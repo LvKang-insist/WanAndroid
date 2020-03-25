@@ -1,8 +1,10 @@
 package com.lv.core.mvp
 
 import android.os.Bundle
+import androidx.annotation.CallSuper
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
+import com.elvishew.xlog.XLog
 import com.lv.core.mvp.IContract.BaseModel
 import java.lang.ref.WeakReference
 
@@ -42,7 +44,8 @@ abstract class BasePresenter<V : IContract.IBaseView, M : BaseModel> :
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy() {
+    @CallSuper
+    open fun onDestroy() {
         viewRef?.clear()
         viewRef = null
     }

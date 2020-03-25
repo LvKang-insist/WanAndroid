@@ -1,4 +1,4 @@
-package com.lv.wanandroid
+package com.lv.wanandroid.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -14,8 +14,7 @@ import com.lv.core.mvp.IContract
 
 @Suppress("UNCHECKED_CAST")
 abstract class BaseActivity<V : IContract.IBaseView, P : IContract.IBasePresenter<V>> :
-    AppCompatActivity(),
-    IContract.IBaseView {
+    AppCompatActivity(), IContract.IBaseView {
 
     lateinit var mPresenter: P
     override fun onCreate(savedInstanceState: Bundle?) {

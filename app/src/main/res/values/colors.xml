@@ -1,30 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--<color name="colorPrimary">#ff008fff</color>-->
-    <color name="colorPrimary">#ffffffff</color>
-    <color name="colorPrimaryDark">#ffffffff</color>
-    <color name="colorAccent">#CC2118</color>
-    <color name="colorAccentPressed">#C22019</color>
-    <color name="colorBackground">#fff2f2f2</color>
-    <color name="color_f32">#ff323232</color>
-    <color name="color_f5c">#ff5c5c5c</color>
-    <color name="color_666">#C2C1C1</color>
-    <color name="gray_ea">#eaeaea</color>
-    <color name="white_aaa">#ffaaaaaa</color>
-    <color name="white_ddd">#ffdddddd</color>
-    <color name="white_eaeaea">#eaeaea</color>
-    <color name="white_f4f5f6">#fff4f5f6</color>
-    <color name="black_f222">#ff222222</color>
-    <color name="gray_959698">#ff959698</color>
-    <color name="color_cdcdcd">#ffcdcdcd</color>
-    <color name="white_55ffffff">#55ffffff</color>
-    <color name="aa">#E2DEDE</color>
-    <color name="color_d67391">#FAFDEAF0</color>
-    <color name="color_f5d8ad72">#FDE7C2</color>
-    <color name="color_8299a3">#BFCACF</color>
-    <color name="color_5b8f8a">#A2B8B4</color>
-    <color name="color_7f7099">#C7C3D1</color>
+    <color name="colorPrimary">#ff2e3b</color>
+    <color name="colorPrimaryDark">#ff2e3b</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- 透明色 -->
+    <color name="transparent">#00000000</color>
+
+    <!-- 白色 -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="white95">#F2FFFFFF</color>
+    <color name="white90">#E6FFFFFF</color>
+    <color name="white85">#D9FFFFFF</color>
+    <color name="white80">#CCFFFFFF</color>
+    <color name="white75">#BFFFFFFF</color>
+    <color name="white70">#B3FFFFFF</color>
+    <color name="white65">#A6FFFFFF</color>
+    <color name="white60">#99FFFFFF</color>
+    <color name="white55">#8CFFFFFF</color>
+    <color name="white50">#80FFFFFF</color>
+    <color name="white45">#73FFFFFF</color>
+    <color name="white40">#66FFFFFF</color>
+    <color name="white35">#59FFFFFF</color>
+    <color name="white30">#4DFFFFFF</color>
+    <color name="white25">#40FFFFFF</color>
+    <color name="white20">#33FFFFFF</color>
+    <color name="white15">#26FFFFFF</color>
+    <color name="white10">#1AFFFFFF</color>
+    <color name="white5">#0DFFFFFF</color>
+
+    <!-- 黑色 -->
+    <color name="black">#FF000000</color>
+    <color name="black95">#F2000000</color>
+    <color name="black90">#E6000000</color>
+    <color name="black85">#D9000000</color>
+    <color name="black80">#CC000000</color>
+    <color name="black75">#B000000F</color>
+    <color name="black70">#B3000000</color>
+    <color name="black65">#A6000000</color>
+    <color name="black60">#99000000</color>
+    <color name="black55">#8C000000</color>
+    <color name="black50">#80000000</color>
+    <color name="black45">#73000000</color>
+    <color name="black40">#66000000</color>
+    <color name="black35">#59000000</color>
+    <color name="black30">#4D000000</color>
+    <color name="black25">#40000000</color>
+    <color name="black20">#33000000</color>
+    <color name="black15">#26000000</color>
+    <color name="black10">#1A000000</color>
+    <color name="black5">#0D000000</color>
+
+    <!-- 灰色 -->
+    <color name="gray">#808080</color>
+    <!-- 红色 -->
+    <color name="red">#FF0000</color>
+    <!-- 金色 -->
+    <color name="gold">#FFD700</color>
+    <!-- 黄色 -->
+    <color name="yellow">#FFFF00</color>
+    <!-- 绿色 -->
+    <color name="green">#008000</color>
+    <!-- 蓝色 -->
+    <color name="blue">#0000FF</color>
+    <!-- 紫色 -->
+    <color name="purple">#800080</color>
+    <!-- 粉色 -->
+    <color name="pink">#FFC0CB</color>
+    <!-- 橙色 -->
+    <color name="orange">#FFA500</color>
+    <!-- 背景色-->
+    <color name="back">#F2F2F2</color>
+
+    <!-- 灰暗的text-->
+    <color name="color_text_gray">#333333</color>
+    <color name="color_text_six">#666666</color>
 
 
 </resources>

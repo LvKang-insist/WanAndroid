@@ -4,7 +4,7 @@ import android.app.Application
 import com.elvishew.xlog.LogConfiguration
 import com.elvishew.xlog.XLog
 import com.hjq.toast.ToastUtils
-import com.www.net.HttpCreator
+import com.www.net.LvCreator
 
 class WanApplication : Application() {
     override fun onCreate() {
@@ -12,6 +12,8 @@ class WanApplication : Application() {
 
         XLog.init(LogConfiguration.Builder().t().tag("345").build())
         ToastUtils.init(this)
-        HttpCreator.log(true)
+        LvCreator
+            .init("https://www.wanandroid.com/")
+            .log(false)
     }
 }

@@ -23,6 +23,14 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res-item',
+                           'src/main/res',
+                           'src/main/res-layout']
+        }
+    }
+
 }
 
 dependencies {

@@ -3,7 +3,7 @@ package com.lv.wanandroid.main
 import android.widget.Toast
 import com.google.android.material.tabs.TabLayout
 import com.lv.core.utils.TabLayoutMediator
-import com.lv.wanandroid.BaseActivity
+import com.lv.wanandroid.base.BaseActivity
 import com.lv.wanandroid.R
 import com.lv.wanandroid.main.adapter.VpAdapter
 import com.lv.wanandroid.main.mvp.MainContract
@@ -21,7 +21,6 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     }
 
     override fun bindView() {
-
         initTabLayout()
     }
 
