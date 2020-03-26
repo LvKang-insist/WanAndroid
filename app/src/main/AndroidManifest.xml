@@ -29,8 +29,7 @@
         </activity>
         <activity
             android:name=".web.WebActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:configChanges="orientation|screenSize|keyboardHidden" />
 
         <!--        集成-TBS 视频播放器 -->
         <activity

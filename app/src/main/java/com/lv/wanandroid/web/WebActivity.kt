@@ -2,46 +2,72 @@ package com.lv.wanandroid.web
 
 import android.content.Intent
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import com.hjq.toast.ToastUtils
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseWebActivity
 import com.lv.wanandroid.web.mvp.WebContract
 import com.lv.wanandroid.web.mvp.WebPresenter
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient
+import com.tencent.smtt.sdk.TbsVideo
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
 import kotlinx.android.synthetic.main.frag_web.*
 
 class WebActivity : BaseWebActivity<WebContract.View, WebContract.Presenter>(), WebContract.View {
-
+    var link: String? = null
     override fun createPresenter(): WebContract.Presenter {
         return WebPresenter()
     }
+
     override fun getWebX5(): WebView {
         return web_x5
     }
+
     override fun layoutId(): Int {
         return R.layout.frag_web
     }
 
     override fun initExtra(intent: Intent) {
-        val link = intent.getStringExtra("link")
-        ToastUtils.show(link)
-        web_x5.loadUrl("https://mp.weixin.qq.com/s/8v9bJmaOSFrHACfHLinH9Q")
-        web_x5.webChromeClient = object : WebChromeClient() {
-            override fun onShowCustomView(p0: View?, p1: IX5WebChromeClient.CustomViewCallback?) {
+        link = intent.getStringExtra("link")
+        web_x5.loadUrl(link)
+//        "https://mp.weixin.qq.com/s/8v9bJmaOSFrHACfHLinH9Q"
+    }
 
-            }
-        }
+    override fun onStart() {
+        super.onStart()
+        web_x5.loadUrl(link)
     }
 
     override fun bindView() {
-
+        setSupportActionBar(tb_web)
+        supportActionBar?.title = ""
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        tb_web.setNavigationIcon(R.drawable.ic_back)
+        tb_web?.setNavigationOnClickListener {
+            goBack()
+        }
     }
 
     override fun onBackPressed() {
         if (web_x5.canGoBack()) {
             web_x5.goBack()
+        } else {
+            finish()
+        }
+    }
+
+    override fun getToolbar(): Toolbar {
+        return tb_web
+    }
+
+    /**
+     * 返回
+     */
+    private fun goBack() {
+        val canGoBack = web_x5?.canGoBack() ?: false
+        if (canGoBack) {
+            web_x5?.goBack()
         } else {
             finish()
         }

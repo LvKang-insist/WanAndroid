@@ -28,15 +28,15 @@ class HomeModel : IContract.BaseModel() {
                 .send()
 
             val a2 =
-                Gson().fromJson<BaseArticle<ArticlePage?>>(articlePage.value, object : TypeToken<BaseArticle<ArticlePage?>>() {}.type)
-//                format<BaseArticle<ArticlePage?>>(articlePage.value)
+//                Gson().fromJson<BaseArticle<ArticlePage?>>(articlePage.value, object : TypeToken<BaseArticle<ArticlePage?>>() {}.type)
+                format<BaseArticle<ArticlePage?>>(articlePage.value)
             Pair(a1, a2)
         }) {
             block(it)
         }
     }
 
-    fun <T> format(value: String): T {
+    private inline fun <reified T> format(value: String): T {
         return Gson().fromJson<T>(value, object : TypeToken<T>() {}.type)
     }
 
