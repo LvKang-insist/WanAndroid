@@ -1,7 +1,5 @@
 package com.lv.wanandroid.module.home.bean
 
-import com.lv.wanandroid.module.home.bean.Article
-
 /**
  * @name WanAndroid-kotlin
  * @class name：com.lv.wanandroid.bean
@@ -13,5 +11,5 @@ import com.lv.wanandroid.module.home.bean.Article
 data class ArticlePage(
     val pageCount: Int,
     val curPage: Int,
-    val datas: List<Article?>?
+    val datas: MutableList<Article?>?
 )

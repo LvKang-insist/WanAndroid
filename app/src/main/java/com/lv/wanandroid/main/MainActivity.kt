@@ -1,10 +1,8 @@
 package com.lv.wanandroid.main
 
 import android.widget.Toast
-import com.google.android.material.tabs.TabLayout
-import com.lv.core.utils.TabLayoutMediator
-import com.lv.wanandroid.base.BaseActivity
 import com.lv.wanandroid.R
+import com.lv.wanandroid.base.BaseActivity
 import com.lv.wanandroid.main.adapter.VpAdapter
 import com.lv.wanandroid.main.mvp.MainContract
 import com.lv.wanandroid.main.mvp.MainPresenter
@@ -26,21 +24,21 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 
 
     private fun initTabLayout() {
-        val tabText = arrayOf("首页", "项目", "体系", "干货")
-        main_viewpager.adapter = VpAdapter(this)
-        TabLayoutMediator(main_tab, main_viewpager,
-            object : TabLayoutMediator.OnConfigureTabCallback {
-                override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
-                    tab.text = tabText[position]
-                }
-            }).attach()
+//        val tabText = arrayOf("首页", "项目", "体系", "干货")
+//        TabLayoutMediator(main_tab, main_viewpager,
+//            object : TabLayoutMediator.OnConfigureTabCallback {
+//                override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
+//                    tab.text = tabText[position]
+//                }
+//            }).attach()
+        main_tab.setupWithViewPager(main_viewpager)
+        main_viewpager.adapter = VpAdapter(supportFragmentManager, 0)
+
     }
 
     override fun showDialog(result: String) {
         Toast.makeText(this, "弹出 Dialog $result", Toast.LENGTH_LONG).show()
     }
-
-
 
 
 }

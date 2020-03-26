@@ -44,5 +44,14 @@ dependencies {
     api "androidx.viewpager2:viewpager2:1.0.0"
     //Recycler 适配器
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
+    //刷新库
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
+    //Banner
+    api 'com.youth.banner:banner:2.0.0-alpha03'  //预览版
+    //Glide
+    api 'com.github.bumptech.glide:glide:4.10.0'
 
+    //腾讯 X5
+    api 'com.tencent.tbs.tbssdk:sdk:43697'
 }

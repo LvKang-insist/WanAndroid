@@ -1,5 +1,6 @@
 package com.lv.wanandroid.base
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.lv.core.mvp.IContract
@@ -24,8 +25,11 @@ abstract class BaseActivity<V : IContract.IBaseView, P : IContract.IBasePresente
         mPresenter.attachView(this as V, savedInstanceState)
         //P 层感知生命周期
         lifecycle.addObserver(mPresenter)
+        initExtra(intent)
         bindView()
     }
+
+    open fun initExtra(intent: Intent) {}
 
     abstract fun createPresenter(): P
 

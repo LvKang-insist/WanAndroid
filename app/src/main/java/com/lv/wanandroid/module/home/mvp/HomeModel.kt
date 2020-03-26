@@ -1,6 +1,5 @@
 package com.lv.wanandroid.module.home.mvp
 
-import com.elvishew.xlog.XLog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.lv.core.mvp.IContract
@@ -19,23 +18,36 @@ import com.www.net.LvHttp
 
 class HomeModel : IContract.BaseModel() {
 
-    fun requestArticle(block: (Pair<BaseArticle<List<Article?>>, BaseArticle<ArticlePage?>>) -> Unit) {
+    fun requestArticle(block: (Pair<BaseArticle<MutableList<Article?>>, BaseArticle<ArticlePage?>>) -> Unit) {
         LvHttp.get().pair({
             val article = it.addUrl("article/top/json").send()
-            val a1 = Gson().fromJson<BaseArticle<List<Article?>>>(
-                article.value, object : TypeToken<BaseArticle<List<Article?>>>() {}.type
+            val a1 = Gson().fromJson<BaseArticle<MutableList<Article?>>>(
+                article.value, object : TypeToken<BaseArticle<MutableList<Article?>>>() {}.type
             )
-            XLog.e("*************" + article.value)
             val articlePage = it.addUrl("article/list/0/json")
                 .send()
-            val a2 = Gson().fromJson<BaseArticle<ArticlePage?>>(
-                articlePage.value,
-                object : TypeToken<BaseArticle<ArticlePage?>>() {}.type
-            )
-            XLog.e("*************" + articlePage.value)
+
+            val a2 =
+                Gson().fromJson<BaseArticle<ArticlePage?>>(articlePage.value, object : TypeToken<BaseArticle<ArticlePage?>>() {}.type)
+//                format<BaseArticle<ArticlePage?>>(articlePage.value)
             Pair(a1, a2)
         }) {
             block(it)
+        }
+    }
+
+    fun <T> format(value: String): T {
+        return Gson().fromJson<T>(value, object : TypeToken<T>() {}.type)
+    }
+
+    fun requestArticlePage(page: Int, block: (BaseArticle<ArticlePage?>) -> Unit) {
+        LvHttp.get("article/list/${page}/json").send {
+            block(
+                Gson().fromJson<BaseArticle<ArticlePage?>>(
+                    it.value,
+                    object : TypeToken<BaseArticle<ArticlePage?>>() {}.type
+                )
+            )
         }
     }
 
