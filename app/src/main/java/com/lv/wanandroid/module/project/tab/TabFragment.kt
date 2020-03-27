@@ -2,6 +2,7 @@ package com.lv.wanandroid.module.project.tab
 
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.elvishew.xlog.XLog
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseFragment
 import com.lv.wanandroid.module.project.bean.Data
@@ -9,7 +10,8 @@ import com.lv.wanandroid.module.project.bean.DataX
 import com.lv.wanandroid.module.project.tab.adapter.TabRvAdapter
 import com.lv.wanandroid.module.project.tab.mvp.TabContract
 import com.lv.wanandroid.module.project.tab.mvp.TabPresenter
-import com.lv.wanandroid.web.WebActivity
+import com.lv.wanandroid.web.AgentWebActivity
+import com.lv.wanandroid.web.WebX5Activity
 import kotlinx.android.synthetic.main.frag_tab.*
 
 class TabFragment :
@@ -51,9 +53,9 @@ class TabFragment :
                 tab_refresh.finishRefreshWithNoMoreData()
             }
         }
-        mAdapter.setOnItemClickListener { adapter, view, position ->
+        mAdapter.setOnItemClickListener { adapter, _, position ->
             val data = adapter.data[position] as DataX
-            val intent = Intent(context, WebActivity::class.java)
+            val intent = Intent(context, AgentWebActivity::class.java)
             intent.putExtra("link", data.link)
             context?.startActivity(intent)
         }

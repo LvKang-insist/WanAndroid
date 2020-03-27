@@ -3,6 +3,7 @@ package com.lv.wanandroid.module.project
 import android.content.Context
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import com.hjq.toast.ToastUtils
 import com.lv.core.utils.ViewPage2Helpter
 import com.lv.core.utils.dip2px
 import com.lv.core.view.TabTitleView
@@ -32,11 +33,11 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
     }
 
     override fun bindView() {
-        project_viewpager.offscreenPageLimit = 5
         mPresenter.requestNav()
     }
 
     override fun resultNav(nav: Nav) {
+        project_viewpager.offscreenPageLimit = nav.data.size
         val commonNavigator = CommonNavigator(context)
         commonNavigator.scrollPivotX = 0.5f //滚动中心点
         commonNavigator.isEnablePivotScroll = false //中心点滚动
@@ -51,7 +52,9 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
                 titleView.selectedColor = resources.getColor(com.lv.wanandroid.R.color.red)
                 titleView.textSize = 18f
                 titleView.text = nav.data[index].name
-                titleView.setOnClickListener { project_viewpager.setCurrentItem(index, false) }
+                titleView.setOnClickListener {
+                    project_viewpager.currentItem = index
+                }
                 return titleView
             }
 

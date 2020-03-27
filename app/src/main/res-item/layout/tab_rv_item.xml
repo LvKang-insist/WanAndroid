@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:layout_marginTop="10dp"
     android:orientation="horizontal"
     android:paddingLeft="15dp"
-    android:paddingRight="15dp"
-    android:layout_marginTop="10dp">
+    android:paddingRight="15dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/tab_rv_iv"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:scaleType="fitXY"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"
+        android:scaleType="fitXY" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,8 +24,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tab_rv_title"
             android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
             android:layout_height="40dp"
+            android:layout_marginTop="5dp"
             android:lines="2"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -33,22 +33,22 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tab_rv_address"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:gravity="center_vertical"
             android:layout_below="@id/tab_rv_title"
+            android:gravity="center_vertical"
             android:lines="2"
+            android:text="项目地址"
             android:textColor="@color/blue"
             android:textSize="15sp"
-            android:text="项目地址"
             tools:ignore="HardcodedText" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:layout_marginBottom="5dp"
-            android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView

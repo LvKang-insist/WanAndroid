@@ -30,21 +30,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".web.WebActivity"
+            android:name=".web.WebX5Activity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
 
-<!--        &lt;!&ndash;        集成-TBS 视频播放器 &ndash;&gt;-->
-<!--        <activity-->
-<!--            android:name="com.tencent.smtt.sdk.VideoActivity"-->
-<!--            android:alwaysRetainTaskState="true"-->
-<!--            android:configChanges="orientation|screenSize|keyboardHidden"-->
-<!--            android:exported="false"-->
-<!--            android:launchMode="singleTask">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="com.tencent.smtt.tbs.video.PLAY" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+        <activity
+            android:name=".web.AgentWebActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true" />
     </application>
 
 </manifest>

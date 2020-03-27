@@ -2,6 +2,7 @@ package com.lv.wanandroid.base
 
 import android.annotation.SuppressLint
 import android.graphics.PixelFormat
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,7 @@ import com.tencent.smtt.export.external.interfaces.JsResult
 import com.tencent.smtt.sdk.*
 
 
-abstract class BaseWebActivity<V : IContract.IBaseView, P : IContract.IBasePresenter<V>> :
+abstract class BaseX5WebActivity<V : IContract.IBaseView, P : IContract.IBasePresenter<V>> :
     BaseActivity<V, P>(), IContract.IBaseView {
 
     private lateinit var webX5: WebView
@@ -36,28 +37,6 @@ abstract class BaseWebActivity<V : IContract.IBaseView, P : IContract.IBasePrese
         //视频为了避免闪屏和透明问题
         window.setFormat(PixelFormat.TRANSLUCENT)
 
-        webX5.settings.setJavaScriptEnabled(true)
-        webX5.settings.setJavaScriptCanOpenWindowsAutomatically(true)
-        webX5.settings.setAllowFileAccess(true)
-        webX5.settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS)
-        webX5.settings.setSupportZoom(true)
-        webX5.settings.setBuiltInZoomControls(true)
-        webX5.settings.setUseWideViewPort(true)
-        webX5.settings.setSupportMultipleWindows(true)
-        // webSetting.setLoadWithOverviewMode(true);
-        webX5.settings.setAppCacheEnabled(true)
-        // webSetting.setDatabaseEnabled(true);
-        webX5.settings.setDomStorageEnabled(true)
-        webX5.settings.setGeolocationEnabled(true)
-        webX5.settings.setAppCacheMaxSize(java.lang.Long.MAX_VALUE)
-        // webSetting.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
-        webX5.settings.setPluginState(WebSettings.PluginState.ON_DEMAND)
-        // webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
-        webX5.settings.setCacheMode(WebSettings.LOAD_NO_CACHE)
-
-       webX5.settings.setSupportMultipleWindows(true)
-        webX5.isClickable = true
-/*
         webX5.settings.setSupportZoom(true) //支持缩放，默认为true。是下面那个的前提。
         webX5.settings.builtInZoomControls = true //设置内置的缩放控件。若为false，则该WebView不可缩放
         webX5.settings.displayZoomControls = true //隐藏原生的缩放控件
@@ -84,7 +63,7 @@ abstract class BaseWebActivity<V : IContract.IBaseView, P : IContract.IBasePrese
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webX5.settings.mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-        }*/
+        }
 //        configPlaySetting()
         //从该页面打开更多链接
         webX5.webViewClient = object : WebViewClient() {

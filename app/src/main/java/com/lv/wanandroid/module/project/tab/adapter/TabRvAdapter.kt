@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.lv.core.utils.load
 import com.lv.wanandroid.R
 import com.lv.wanandroid.module.project.bean.DataX
-import com.lv.wanandroid.web.WebActivity
+import com.lv.wanandroid.web.WebX5Activity
 
 class TabRvAdapter(layoutResId: Int) : BaseQuickAdapter<DataX, BaseViewHolder>(layoutResId) {
 
@@ -17,7 +17,7 @@ class TabRvAdapter(layoutResId: Int) : BaseQuickAdapter<DataX, BaseViewHolder>(l
             helper.setText(R.id.tab_rv_author, item.author)
             helper.setText(R.id.tab_rv_date, item.niceDate)
             helper.getView<AppCompatTextView>(R.id.tab_rv_address).setOnClickListener {
-                val intent = Intent(it.context, WebActivity::class.java)
+                val intent = Intent(it.context, WebX5Activity::class.java)
                 intent.putExtra("link", item.projectLink)
                 it.context.startActivity(intent)
             }

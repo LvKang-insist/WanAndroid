@@ -3,6 +3,7 @@ package com.lv.wanandroid.module.home
 
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.lv.core.basedialog.LoadingView
 import com.lv.core.utils.DividerItemDecoration
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseFragment
@@ -13,7 +14,8 @@ import com.lv.wanandroid.module.home.bean.BannerData
 import com.lv.wanandroid.module.home.bean.Data
 import com.lv.wanandroid.module.home.mvp.HomeContract
 import com.lv.wanandroid.module.home.mvp.HomePresenter
-import com.lv.wanandroid.web.WebActivity
+import com.lv.wanandroid.web.AgentWebActivity
+import com.lv.wanandroid.web.WebX5Activity
 import com.youth.banner.listener.OnBannerListener
 import kotlinx.android.synthetic.main.frag_home.*
 
@@ -60,13 +62,12 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
 
 
     private fun initRv() {
+        LoadingView.showLoading("加载中", fragmentManager)
         mPresenter.requestArticle()
-        homeRvAdapter.setOnItemClickListener { adapter, view, position ->
+        homeRvAdapter.setOnItemClickListener { adapter, _, position ->
             val article: Article = adapter.data[position] as Article
-            val intent = Intent(context, WebActivity::class.java)
+            val intent = Intent(context, AgentWebActivity::class.java)
             intent.putExtra("link", article.link)
-            intent.putExtra("title", article.title)
-            intent.putExtra("projectLink", article.projectLink)
             context?.startActivity(intent)
         }
         //刷新
@@ -84,6 +85,7 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
     }
 
     override fun resultArticle(pageCount: Int, curPage: Int, mutableList: MutableList<Article?>) {
+        LoadingView.stopLoading()
         this.pageCount = pageCount
         this.curPage = curPage
         if (curPage == 1) {
@@ -104,7 +106,7 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
             }
 
             override fun OnBannerClick(data: Data?, position: Int) {
-                val intent = Intent(context, WebActivity::class.java)
+                val intent = Intent(context, WebX5Activity::class.java)
                 intent.putExtra("link", data?.url)
                 context?.startActivity(intent)
             }
