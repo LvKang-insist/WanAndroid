@@ -2,14 +2,12 @@ package com.lv.wanandroid.base
 
 import android.annotation.SuppressLint
 import android.graphics.PixelFormat
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.widget.Toolbar
 import com.elvishew.xlog.XLog
-import com.hjq.toast.ToastUtils
 import com.lv.core.mvp.IContract
 import com.lv.wanandroid.R
 import com.tencent.smtt.export.external.interfaces.ConsoleMessage
@@ -29,7 +27,7 @@ abstract class BaseWebActivity<V : IContract.IBaseView, P : IContract.IBasePrese
         webX5 = getWebX5()
 
         init()
-        listener()
+//        listener()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -38,6 +36,28 @@ abstract class BaseWebActivity<V : IContract.IBaseView, P : IContract.IBasePrese
         //视频为了避免闪屏和透明问题
         window.setFormat(PixelFormat.TRANSLUCENT)
 
+        webX5.settings.setJavaScriptEnabled(true)
+        webX5.settings.setJavaScriptCanOpenWindowsAutomatically(true)
+        webX5.settings.setAllowFileAccess(true)
+        webX5.settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS)
+        webX5.settings.setSupportZoom(true)
+        webX5.settings.setBuiltInZoomControls(true)
+        webX5.settings.setUseWideViewPort(true)
+        webX5.settings.setSupportMultipleWindows(true)
+        // webSetting.setLoadWithOverviewMode(true);
+        webX5.settings.setAppCacheEnabled(true)
+        // webSetting.setDatabaseEnabled(true);
+        webX5.settings.setDomStorageEnabled(true)
+        webX5.settings.setGeolocationEnabled(true)
+        webX5.settings.setAppCacheMaxSize(java.lang.Long.MAX_VALUE)
+        // webSetting.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
+        webX5.settings.setPluginState(WebSettings.PluginState.ON_DEMAND)
+        // webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        webX5.settings.setCacheMode(WebSettings.LOAD_NO_CACHE)
+
+       webX5.settings.setSupportMultipleWindows(true)
+        webX5.isClickable = true
+/*
         webX5.settings.setSupportZoom(true) //支持缩放，默认为true。是下面那个的前提。
         webX5.settings.builtInZoomControls = true //设置内置的缩放控件。若为false，则该WebView不可缩放
         webX5.settings.displayZoomControls = true //隐藏原生的缩放控件
@@ -49,7 +69,7 @@ abstract class BaseWebActivity<V : IContract.IBaseView, P : IContract.IBasePrese
         webX5.settings.useWideViewPort = true    //将图片调整大小适合 webView 的大小
         webX5.settings.loadWithOverviewMode = true   //缩放至屏幕的大小
         webX5.settings.blockNetworkLoads = false
-
+        webX5.overScrollMode = View.OVER_SCROLL_ALWAYS
         //文件权限
         webX5.settings.allowFileAccess = true
         webX5.settings.setAllowFileAccessFromFileURLs(true)
@@ -64,11 +84,8 @@ abstract class BaseWebActivity<V : IContract.IBaseView, P : IContract.IBasePrese
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webX5.settings.mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-        }
+        }*/
 //        configPlaySetting()
-    }
-
-    private fun listener() {
         //从该页面打开更多链接
         webX5.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(p0: WebView, p1: String): Boolean {
@@ -76,6 +93,10 @@ abstract class BaseWebActivity<V : IContract.IBaseView, P : IContract.IBasePrese
                 return true
             }
         }
+    }
+
+    private fun listener() {
+
         webX5.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(p0: WebView?, p1: Int) {
                 XLog.d("当前 腾讯X5 进度 $p1")

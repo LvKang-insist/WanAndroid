@@ -1,6 +1,7 @@
 package com.lv.wanandroid.main
 
 import android.widget.Toast
+import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseActivity
 import com.lv.wanandroid.main.adapter.VpAdapter
@@ -22,7 +23,6 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
         initTabLayout()
     }
 
-
     private fun initTabLayout() {
 //        val tabText = arrayOf("首页", "项目", "体系", "干货")
 //        TabLayoutMediator(main_tab, main_viewpager,
@@ -32,8 +32,8 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 //                }
 //            }).attach()
         main_tab.setupWithViewPager(main_viewpager)
-        main_viewpager.adapter = VpAdapter(supportFragmentManager, 0)
-
+        main_viewpager.adapter = VpAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+        main_viewpager.offscreenPageLimit = 3
     }
 
     override fun showDialog(result: String) {

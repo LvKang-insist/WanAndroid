@@ -3,8 +3,6 @@ package com.lv.wanandroid.module.home
 
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.hjq.toast.ToastUtils
 import com.lv.core.utils.DividerItemDecoration
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseFragment
@@ -53,14 +51,11 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
         home_banner.setDelayTime(5000)
         home_banner.setBannerRound(8f)
         //设置一屏多页的效果
-        home_banner.viewPager2.offscreenPageLimit = 1
+        /*home_banner.viewPager2.offscreenPageLimit = 1
         val recyclerView = home_banner.viewPager2.getChildAt(0) as RecyclerView
-        val padding =
-            resources.getDimensionPixelOffset(R.dimen._12) +
-                    resources.getDimensionPixelOffset(R.dimen._12)
+        val padding = resources.getDimensionPixelOffset(R.dimen._12) + resources.getDimensionPixelOffset(R.dimen._12)
         recyclerView.setPadding(padding, 0, padding, 0)
-        recyclerView.clipToPadding = false;
-
+        recyclerView.clipToPadding = false;*/
     }
 
 

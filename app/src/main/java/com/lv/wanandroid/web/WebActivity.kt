@@ -3,14 +3,10 @@ package com.lv.wanandroid.web
 import android.content.Intent
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import com.hjq.toast.ToastUtils
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseWebActivity
 import com.lv.wanandroid.web.mvp.WebContract
 import com.lv.wanandroid.web.mvp.WebPresenter
-import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient
-import com.tencent.smtt.sdk.TbsVideo
-import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
 import kotlinx.android.synthetic.main.frag_web.*
 
@@ -30,13 +26,15 @@ class WebActivity : BaseWebActivity<WebContract.View, WebContract.Presenter>(), 
 
     override fun initExtra(intent: Intent) {
         link = intent.getStringExtra("link")
-        web_x5.loadUrl(link)
+//        web_x5.loadUrl()
 //        "https://mp.weixin.qq.com/s/8v9bJmaOSFrHACfHLinH9Q"
     }
 
     override fun onStart() {
         super.onStart()
         web_x5.loadUrl(link)
+        web_x5.view.overScrollMode = View.OVER_SCROLL_ALWAYS
+
     }
 
     override fun bindView() {
