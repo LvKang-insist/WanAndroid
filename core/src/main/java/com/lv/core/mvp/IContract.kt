@@ -20,7 +20,7 @@ interface IContract {
     /**
      *  P 层接口
      */
-    interface IBasePresenter<V : IBaseView> :  LifecycleObserver {
+    interface IBasePresenter<V : IBaseView> : LifecycleObserver {
         fun attachView(view: V, savedInstanceState: Bundle?)
 
         fun getView(): V?
@@ -33,6 +33,7 @@ interface IContract {
     abstract class BaseModel {
         open fun request(url: String, params: MutableMap<String, Any>, block: (Result) -> Unit) {
             LvHttp.get(url)
+                .addParam(params)
                 .send {
                     block(it)
                 }

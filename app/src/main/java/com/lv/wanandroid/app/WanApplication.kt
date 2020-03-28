@@ -12,7 +12,7 @@ class WanApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        XLog.init(LogConfiguration.Builder().t().tag("345").build())
+        XLog.init(LogConfiguration.Builder().t().tag("345") .build())
         ToastUtils.init(this)
         LvCreator
             .init("https://www.wanandroid.com/")

@@ -8,9 +8,9 @@ package com.lv.wanandroid.module.home.bean
  * @description 置顶数据
  */
 data class Article(
-    val apkLink: String,
+    val apkLink: String?,
     val audit: Int,
-    val author: String,
+    val author: String?,
     val canEdit: Boolean,
     val chapterId: Int,
     val chapterName: String,

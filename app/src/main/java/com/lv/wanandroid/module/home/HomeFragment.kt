@@ -3,7 +3,7 @@ package com.lv.wanandroid.module.home
 
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lv.core.basedialog.LoadingView
+//import com.lv.core.basedialog.LoadingView
 import com.lv.core.utils.DividerItemDecoration
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseFragment
@@ -44,12 +44,12 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
             DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL_LIST)
         )
         home_recycler.adapter = homeRvAdapter
-        initRv()
         initBanner()
+        initRv()
+        refreshLayout.autoRefresh()
     }
 
     private fun initBanner() {
-        mPresenter.requestBanner()
         home_banner.setDelayTime(5000)
         home_banner.setBannerRound(8f)
         //设置一屏多页的效果
@@ -62,8 +62,7 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
 
 
     private fun initRv() {
-        LoadingView.showLoading("加载中", fragmentManager)
-        mPresenter.requestArticle()
+//        LoadingView.showLoading("加载中", fragmentManager)
         homeRvAdapter.setOnItemClickListener { adapter, _, position ->
             val article: Article = adapter.data[position] as Article
             val intent = Intent(context, AgentWebActivity::class.java)
@@ -73,6 +72,7 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
         //刷新
         refreshLayout.setOnRefreshListener {
             mPresenter.requestArticle()
+            mPresenter.requestBanner()
         }
         //        加载
         refreshLayout.setOnLoadMoreListener {
@@ -85,7 +85,7 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
     }
 
     override fun resultArticle(pageCount: Int, curPage: Int, mutableList: MutableList<Article?>) {
-        LoadingView.stopLoading()
+//        LoadingView.stopLoading()
         this.pageCount = pageCount
         this.curPage = curPage
         if (curPage == 1) {
@@ -99,7 +99,6 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
 
     override fun resultBanner(bannerData: BannerData) {
         home_banner.adapter = BannerImgAdapter(bannerData.data)
-
         home_banner.setOnBannerListener(object : OnBannerListener<Data> {
             override fun onBannerChanged(position: Int) {
 

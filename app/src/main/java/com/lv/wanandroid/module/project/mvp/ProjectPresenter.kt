@@ -1,9 +1,9 @@
 package com.lv.wanandroid.module.project.mvp
 
-import com.elvishew.xlog.XLog
 import com.lv.core.mvp.BasePresenter
 import com.lv.core.mvp.IContract
 import com.lv.wanandroid.module.project.bean.Nav
+import com.lv.wanandroid.module.system.mvp.SystemModel
 
 /**
  * @name WanAndroid-kotlin
@@ -13,11 +13,11 @@ import com.lv.wanandroid.module.project.bean.Nav
  * @description
  */
 
-class ProjectPresenter : BasePresenter<ProjectContract.View, ProjectModel>(),
+class ProjectPresenter : BasePresenter<ProjectContract.View, SystemModel>(),
     ProjectContract.Presenter {
 
     override fun setModel(): IContract.BaseModel {
-        return ProjectModel()
+        return SystemModel()
     }
 
     override fun requestNav() {
@@ -25,11 +25,5 @@ class ProjectPresenter : BasePresenter<ProjectContract.View, ProjectModel>(),
         mModel.request("project/tree/json") {
             getView()?.resultNav(it.format(Nav::class.java))
         }
-    }
-}
-
-class Ex(s: String) : Exception(s) {
-    init {
-        XLog.e("异常退出")
     }
 }

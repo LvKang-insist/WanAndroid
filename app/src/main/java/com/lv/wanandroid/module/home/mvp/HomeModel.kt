@@ -1,5 +1,6 @@
 package com.lv.wanandroid.module.home.mvp
 
+import com.elvishew.xlog.XLog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.lv.core.mvp.IContract
@@ -19,35 +20,23 @@ import com.www.net.LvHttp
 class HomeModel : IContract.BaseModel() {
 
     fun requestArticle(block: (Pair<BaseArticle<MutableList<Article?>>, BaseArticle<ArticlePage?>>) -> Unit) {
-        LvHttp.get().pair({
-            val article = it.addUrl("article/top/json").send()
-            val a1 = Gson().fromJson<BaseArticle<MutableList<Article?>>>(
-                article.value, object : TypeToken<BaseArticle<MutableList<Article?>>>() {}.type
-            )
-            val articlePage = it.addUrl("article/list/0/json")
-                .send()
-
-            val a2 =
-//                Gson().fromJson<BaseArticle<ArticlePage?>>(articlePage.value, object : TypeToken<BaseArticle<ArticlePage?>>() {}.type)
-                format<BaseArticle<ArticlePage?>>(articlePage.value)
-            Pair(a1, a2)
-        }) {
-            block(it)
+        LvHttp.zip(Pair({
+            LvHttp.get().addUrl("article/top/json").send()
+        }, {
+            LvHttp.get().addUrl("article/list/0/json").send()
+        })) {
+            XLog.e("哈哈哈--- ${Thread.currentThread().name}")
+            block(Pair(format(it.first.value), format(it.second.value)))
         }
     }
 
-    private inline fun <reified T> format(value: String): T {
-        return Gson().fromJson<T>(value, object : TypeToken<T>() {}.type)
-    }
+     private inline fun <reified T> format(value: String): T {
+         return Gson().fromJson<T>(value, object : TypeToken<T>() {}.type)
+     }
 
     fun requestArticlePage(page: Int, block: (BaseArticle<ArticlePage?>) -> Unit) {
         LvHttp.get("article/list/${page}/json").send {
-            block(
-                Gson().fromJson<BaseArticle<ArticlePage?>>(
-                    it.value,
-                    object : TypeToken<BaseArticle<ArticlePage?>>() {}.type
-                )
-            )
+            block(format(it.value))
         }
     }
 

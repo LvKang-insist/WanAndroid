@@ -3,10 +3,10 @@ package com.lv.wanandroid.module.project
 import android.content.Context
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
-import com.hjq.toast.ToastUtils
 import com.lv.core.utils.ViewPage2Helpter
 import com.lv.core.utils.dip2px
 import com.lv.core.view.TabTitleView
+import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseFragment
 import com.lv.wanandroid.main.MainActivity
 import com.lv.wanandroid.module.project.adapter.VpTabAdapter
@@ -29,7 +29,7 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
     }
 
     override fun layoutId(): Int {
-        return com.lv.wanandroid.R.layout.frag_project
+        return R.layout.frag_project
     }
 
     override fun bindView() {
@@ -40,6 +40,7 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
         project_viewpager.offscreenPageLimit = nav.data.size
         val commonNavigator = CommonNavigator(context)
         commonNavigator.scrollPivotX = 0.5f //滚动中心点
+        commonNavigator.isEnablePivotScroll
         commonNavigator.isEnablePivotScroll = false //中心点滚动
         commonNavigator.adapter = object : CommonNavigatorAdapter() {
             override fun getCount(): Int {
