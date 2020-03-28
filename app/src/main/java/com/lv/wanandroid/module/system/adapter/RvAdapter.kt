@@ -6,13 +6,13 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.lv.wanandroid.R
-import com.lv.wanandroid.module.system.bean.Data
+import com.lv.wanandroid.module.system.bean.TreeBean
 
-class SyStemLvAdapter(layoutResId: Int) : BaseQuickAdapter<Data, BaseViewHolder>(layoutResId) {
+class RvAdapter(layoutResId: Int) : BaseQuickAdapter<TreeBean.Data, BaseViewHolder>(layoutResId) {
 
     private var pos = 0
 
-    override fun convert(helper: BaseViewHolder, item: Data?) {
+    override fun convert(helper: BaseViewHolder, item: TreeBean.Data?) {
         val text = helper.getView<AppCompatTextView>(R.id.system_lv_item_tv)
         val view = helper.getView<View>(R.id.system_lv_item_view)
         text.text = item?.name
