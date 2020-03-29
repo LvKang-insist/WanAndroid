@@ -3,6 +3,7 @@ package com.lv.wanandroid.module.project
 import android.content.Context
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import com.lv.core.basedialog.LoadingView
 import com.lv.core.utils.ViewPage2Helpter
 import com.lv.core.utils.dip2px
 import com.lv.core.view.TabTitleView
@@ -33,6 +34,12 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
     }
 
     override fun bindView() {
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        LoadingView.showLoading("加载中", fragmentManager)
         mPresenter.requestNav()
     }
 
@@ -46,7 +53,6 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
             override fun getCount(): Int {
                 return nav.data.size
             }
-
             override fun getTitleView(context: Context, index: Int): IPagerTitleView {
                 val titleView = TabTitleView(context)
                 titleView.normalColor = resources.getColor(com.lv.wanandroid.R.color.black)
@@ -75,6 +81,7 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
         project_viewpager.adapter =
             VpTabAdapter(childFragmentManager, nav.data, (context as MainActivity).lifecycle)
         ViewPage2Helpter.bind(project_tab_layout, project_viewpager)
+        LoadingView.stopLoading()
     }
 
 

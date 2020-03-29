@@ -19,6 +19,10 @@ import com.lv.wanandroid.web.AgentWebActivity
 import com.lv.wanandroid.web.WebX5Activity
 import com.youth.banner.listener.OnBannerListener
 import kotlinx.android.synthetic.main.frag_home.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Suppress("UNCHECKED_CAST")
 class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), HomeContract.View {
@@ -41,12 +45,11 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
     override fun bindView() {
         home_recycler.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        home_recycler.addItemDecoration(
-            DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL_LIST)
-        )
         home_recycler.adapter = homeRvAdapter
         initBanner()
         initRv()
+//        refreshLayout.autoRefresh()
+
     }
 
     private fun initBanner() {
@@ -63,8 +66,8 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
 
 
     private fun initRv() {
-        mPresenter.requestArticle()
         LoadingView.showLoading("加载中", fragmentManager)
+        mPresenter.requestArticle()
         homeRvAdapter.setOnItemClickListener { adapter, _, position ->
             val article: Article = adapter.data[position] as Article
             val intent = Intent(context, AgentWebActivity::class.java)
@@ -91,11 +94,11 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
         this.pageCount = pageCount
         this.curPage = curPage
         if (curPage == 1) {
+            refreshLayout.finishRefresh(true)
             homeRvAdapter.setNewData(mutableList)
-            refreshLayout.finishRefresh(true);
         } else {
-            homeRvAdapter.addData(mutableList)
             refreshLayout.finishLoadMore()
+            homeRvAdapter.addData(mutableList)
         }
     }
 
