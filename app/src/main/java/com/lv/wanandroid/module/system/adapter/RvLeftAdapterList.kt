@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.lv.wanandroid.R
 import com.lv.wanandroid.module.system.bean.TreeBean
 
-class RvAdapterList(layoutResId: Int) : BaseQuickAdapter<TreeBean.Data, BaseViewHolder>(layoutResId) {
+class RvLeftAdapterList(layoutResId: Int) : BaseQuickAdapter<TreeBean.Data, BaseViewHolder>(layoutResId) {
 
     private var pos = 0
 

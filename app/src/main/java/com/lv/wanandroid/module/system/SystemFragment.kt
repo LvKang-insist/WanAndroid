@@ -2,11 +2,11 @@ package com.lv.wanandroid.module.system
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.hjq.toast.ToastUtils
+import androidx.viewpager2.widget.ViewPager2
+import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseFragmentLazy
-import com.lv.wanandroid.module.system.adapter.RvAdapterContent
-import com.lv.wanandroid.module.system.adapter.RvAdapterList
+import com.lv.wanandroid.module.system.adapter.VpAdapter
+import com.lv.wanandroid.module.system.adapter.RvLeftAdapterList
 import com.lv.wanandroid.module.system.bean.TreeBean
 import com.lv.wanandroid.module.system.mvp.ProjectPresenter
 import com.lv.wanandroid.module.system.mvp.SystemPresenter
@@ -20,14 +20,14 @@ class SystemFragment : BaseFragmentLazy<ProjectPresenter.View, ProjectPresenter.
     }
 
     override fun layoutId(): Int {
-        return com.lv.wanandroid.R.layout.frag_system
+        return R.layout.frag_system
     }
 
     private val mRvAdapterList by lazy {
-        RvAdapterList(com.lv.wanandroid.R.layout.system_lv_item)
+        RvLeftAdapterList(R.layout.system_left_item)
     }
 
-    private lateinit var mRvAdapterContent: RvAdapterContent
+    private lateinit var mRvAdapterContent: VpAdapter
     private val mRvContentManager by lazy {
         ViewPagerLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
     }
@@ -44,28 +44,17 @@ class SystemFragment : BaseFragmentLazy<ProjectPresenter.View, ProjectPresenter.
     }
 
     private fun initRvContent(data: List<TreeBean.Data>) {
-
-        mRvAdapterContent = RvAdapterContent(com.lv.wanandroid.R.layout.layout_system_page)
-        mRvAdapterContent.setNewData(data)
-        frag_system_rv_content.layoutManager = mRvContentManager
-        frag_system_rv_content.adapter = mRvAdapterContent
-        mRvAdapterContent.listener = {
-            ToastUtils.show("跳 $it")
-            moveToPosition(mRvContentManager, frag_system_rv_content, it)
-        }
+        mRvAdapterContent = VpAdapter(R.layout.layout_system_page, data)
+        frag_system_vp.orientation = ViewPager2.ORIENTATION_VERTICAL
+        frag_system_vp.adapter = mRvAdapterContent
     }
 
     private fun initRvList() {
         mPresenter.requestTree()
+        mRvAdapterList.closeLoadAnimation()
         frag_system_rv_list.layoutManager = mRvListManager
         frag_system_rv_list.adapter = mRvAdapterList
         frag_system_rv_list.itemAnimator = null
-        mRvAdapterList.closeLoadAnimation()
-        mRvAdapterList.onItemClickListener =
-            BaseQuickAdapter.OnItemClickListener { _, _, position ->
-                ToastUtils.show("跳")
-                moveToPosition(mRvContentManager, frag_system_rv_content, position)
-            }
     }
 
     override fun result(data: List<TreeBean.Data>) {

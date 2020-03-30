@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="5dp"
-    android:orientation="vertical"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
@@ -14,8 +14,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-       >
+        android:orientation="horizontal">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/frag_system_rv_list"
@@ -29,19 +28,13 @@
             android:layout_height="match_parent"
             android:background="#eeeeee" />
 
-        <RelativeLayout
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/frag_system_vp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/frag_system_rv_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never"
-                android:scrollbars="none"/>
-
-        </RelativeLayout>
+            android:overScrollMode="never"
+            android:scrollbars="none" />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

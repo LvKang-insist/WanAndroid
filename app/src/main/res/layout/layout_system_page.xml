@@ -4,35 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/layout_sym_vp_page_scroll"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:background="#000000" />
+
+    <com.lv.wanandroid.module.system.RecyclerViewPager2
+        android:id="@+id/layout_system_page_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:overScrollMode="never"
-        android:scrollbars="none">
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/_12"
-                android:background="@color/black" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/layout_sym_vp_page_linear"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    </androidx.core.widget.NestedScrollView>
+        android:scrollbars="none" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
