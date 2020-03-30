@@ -1,13 +1,12 @@
 package com.lv.wanandroid.module.home
 
 
+//import com.lv.core.basedialog.LoadingView
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lv.core.basedialog.LoadingView
-//import com.lv.core.basedialog.LoadingView
-import com.lv.core.utils.DividerItemDecoration
 import com.lv.wanandroid.R
-import com.lv.wanandroid.base.BaseFragment
+import com.lv.wanandroid.base.BaseFragmentLazy
 import com.lv.wanandroid.module.home.adapter.BannerImgAdapter
 import com.lv.wanandroid.module.home.adapter.HomeRvAdapter
 import com.lv.wanandroid.module.home.bean.Article
@@ -19,13 +18,10 @@ import com.lv.wanandroid.web.AgentWebActivity
 import com.lv.wanandroid.web.WebX5Activity
 import com.youth.banner.listener.OnBannerListener
 import kotlinx.android.synthetic.main.frag_home.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @Suppress("UNCHECKED_CAST")
-class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), HomeContract.View {
+class HomeFragment : BaseFragmentLazy<HomeContract.View, HomeContract.Presenter>(),
+    HomeContract.View {
 
     private var pageCount: Int = 0
     private var curPage: Int = 0
@@ -43,13 +39,10 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
 
 
     override fun bindView() {
-        home_recycler.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        home_recycler.adapter = homeRvAdapter
-        initBanner()
-        initRv()
-//        refreshLayout.autoRefresh()
-
+        if (homeRvAdapter.data.size <= 0) {
+            initBanner()
+            initRv()
+        }
     }
 
     private fun initBanner() {
@@ -68,6 +61,9 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
     private fun initRv() {
         LoadingView.showLoading("加载中", fragmentManager)
         mPresenter.requestArticle()
+        home_recycler.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        home_recycler.adapter = homeRvAdapter
         homeRvAdapter.setOnItemClickListener { adapter, _, position ->
             val article: Article = adapter.data[position] as Article
             val intent = Intent(context, AgentWebActivity::class.java)

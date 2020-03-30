@@ -2,35 +2,46 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="5dp"
     android:orientation="vertical"
-    android:layout_marginTop="5dp">
+    android:descendantFocusability="blocksDescendants">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#eeeeee"/>
+        android:background="#eeeeee" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+       >
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/frag_system_rv"
+            android:id="@+id/frag_system_rv_list"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:overScrollMode="never"
-            android:scrollbars="none"/>
+            android:scrollbars="none" />
 
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="#eeeeee" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/frag_system_vp"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/frag_system_rv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="none"/>
+
+        </RelativeLayout>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

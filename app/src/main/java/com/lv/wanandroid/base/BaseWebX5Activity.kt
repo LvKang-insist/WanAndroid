@@ -18,7 +18,7 @@ import com.tencent.smtt.export.external.interfaces.JsResult
 import com.tencent.smtt.sdk.*
 
 
-abstract class BaseX5WebActivity<V : IContract.IBaseView, P : IContract.IBasePresenter<V>> :
+abstract class BaseWebX5Activity<V : IContract.IBaseView, P : IContract.IBasePresenter<V>> :
     BaseActivity<V, P>(), IContract.IBaseView {
 
     private lateinit var webX5: WebView

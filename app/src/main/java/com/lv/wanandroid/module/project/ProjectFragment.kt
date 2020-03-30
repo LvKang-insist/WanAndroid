@@ -8,7 +8,7 @@ import com.lv.core.utils.ViewPage2Helpter
 import com.lv.core.utils.dip2px
 import com.lv.core.view.TabTitleView
 import com.lv.wanandroid.R
-import com.lv.wanandroid.base.BaseFragment
+import com.lv.wanandroid.base.BaseFragmentLazy
 import com.lv.wanandroid.main.MainActivity
 import com.lv.wanandroid.module.project.adapter.VpTabAdapter
 import com.lv.wanandroid.module.project.bean.Nav
@@ -22,8 +22,11 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTit
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
 
 
-class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Presenter>(),
+class ProjectFragment : BaseFragmentLazy<ProjectContract.View, ProjectContract.Presenter>(),
+
     ProjectContract.View {
+
+    private var onVisible = false
 
     override fun createPresenter(): ProjectContract.Presenter {
         return ProjectPresenter()
@@ -34,14 +37,13 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
     }
 
     override fun bindView() {
-
+        if (!onVisible) {
+            LoadingView.showLoading("加载中", fragmentManager)
+            mPresenter.requestNav()
+            onVisible = true
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        LoadingView.showLoading("加载中", fragmentManager)
-        mPresenter.requestNav()
-    }
 
     override fun resultNav(nav: Nav) {
         project_viewpager.offscreenPageLimit = nav.data.size
@@ -53,6 +55,7 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
             override fun getCount(): Int {
                 return nav.data.size
             }
+
             override fun getTitleView(context: Context, index: Int): IPagerTitleView {
                 val titleView = TabTitleView(context)
                 titleView.normalColor = resources.getColor(com.lv.wanandroid.R.color.black)
@@ -81,7 +84,7 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
         project_viewpager.adapter =
             VpTabAdapter(childFragmentManager, nav.data, (context as MainActivity).lifecycle)
         ViewPage2Helpter.bind(project_tab_layout, project_viewpager)
-        LoadingView.stopLoading()
+        LoadingView.stopLoading(500)
     }
 
 

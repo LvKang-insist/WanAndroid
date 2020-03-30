@@ -4,14 +4,14 @@ import android.content.Intent
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.lv.wanandroid.R
-import com.lv.wanandroid.base.BaseX5WebActivity
+import com.lv.wanandroid.base.BaseWebX5Activity
 import com.lv.wanandroid.web.mvp.WebContract
 import com.lv.wanandroid.web.mvp.WebPresenter
 import com.tencent.smtt.sdk.WebView
 import kotlinx.android.synthetic.main.frag_x5web.*
 
 
-class WebX5Activity : BaseX5WebActivity<WebContract.View, WebContract.Presenter>(), WebContract.View {
+class WebX5Activity : BaseWebX5Activity<WebContract.View, WebContract.Presenter>(), WebContract.View {
     var link: String? = null
     override fun createPresenter(): WebContract.Presenter {
         return WebPresenter()

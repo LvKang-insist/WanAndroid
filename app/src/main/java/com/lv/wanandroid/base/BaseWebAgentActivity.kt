@@ -21,7 +21,7 @@ import java.util.*
  * @time 2020/3/27 22:35
  * @description
  */
-abstract class BaseAgentWebActivity<V : IContract.IBaseView, P : IContract.IBasePresenter<V>> :
+abstract class BaseWebAgentActivity<V : IContract.IBaseView, P : IContract.IBasePresenter<V>> :
     BaseActivity<V, P>(), IContract.IBaseView {
 
     override fun onCreate(savedInstanceState: Bundle?) {

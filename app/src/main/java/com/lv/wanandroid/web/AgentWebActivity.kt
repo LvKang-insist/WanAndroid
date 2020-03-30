@@ -3,19 +3,12 @@ package com.lv.wanandroid.web
 import android.content.Intent
 import android.webkit.WebView
 import android.widget.LinearLayout
-import androidx.appcompat.widget.Toolbar
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.coolindicator.sdk.CoolIndicator
-import com.hjq.toast.ToastUtils
 import com.just.agentweb.*
 import com.lv.wanandroid.R
-import com.lv.wanandroid.base.BaseActivity
-import com.lv.wanandroid.base.BaseAgentWebActivity
+import com.lv.wanandroid.base.BaseWebAgentActivity
 import com.lv.wanandroid.web.mvp.WebContract
 import com.lv.wanandroid.web.mvp.WebPresenter
 import kotlinx.android.synthetic.main.frag_agent_web.*
-import kotlinx.android.synthetic.main.frag_home.*
-import kotlinx.android.synthetic.main.frag_x5web.*
 
 
 /**
@@ -25,7 +18,7 @@ import kotlinx.android.synthetic.main.frag_x5web.*
  * @time 2020/3/27 22:07
  * @description
  */
-class AgentWebActivity : BaseAgentWebActivity<WebContract.View, WebContract.Presenter>(),
+class AgentWebActivity : BaseWebAgentActivity<WebContract.View, WebContract.Presenter>(),
     WebContract.View {
     var link: String? = null
     lateinit var mAgentWeb: AgentWeb
