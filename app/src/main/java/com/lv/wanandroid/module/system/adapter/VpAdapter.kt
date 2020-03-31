@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseViewHolder
+import com.lv.core.view.RecyclerViewPager2
 import com.lv.wanandroid.R
-import com.lv.wanandroid.module.system.RecyclerViewPager2
 import com.lv.wanandroid.module.system.bean.TreeBean
 
 /**
@@ -37,8 +37,9 @@ class VpAdapter(private val layoutResId: Int, val data: List<TreeBean.Data>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mRecycler.layoutManager =
             LinearLayoutManager(holder.view.context, LinearLayoutManager.VERTICAL, false)
-        val adapter = RvRightAdapterContent(R.layout.system_right_item)
+
+        val converter = RvConverter(data[position].children)
+        val adapter = RvRightAdapterContent(converter.convert())
         holder.mRecycler.adapter = adapter
-        adapter.setNewData(data[position].children)
     }
 }

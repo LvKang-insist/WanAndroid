@@ -1,13 +1,12 @@
 package com.lv.wanandroid.main.adapter
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.lv.wanandroid.module.essence.EssenceFragment
+
 import com.lv.wanandroid.module.home.HomeFragment
 import com.lv.wanandroid.module.project.ProjectFragment
+import com.lv.wanandroid.module.square.SquareFragment
 import com.lv.wanandroid.module.system.SystemFragment
 
 //class VpAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
@@ -31,7 +30,7 @@ class VpAdapter(fragmentManager: FragmentManager, behavior: Int) :
     val tabText = arrayOf("首页", "项目", "体系", "干货")
 
     var fragList: List<Fragment> =
-        listOf(HomeFragment(), ProjectFragment(), SystemFragment(), EssenceFragment())
+        listOf(HomeFragment(), ProjectFragment(), SystemFragment(), SquareFragment())
 
     override fun getItem(position: Int): Fragment {
         return fragList[position]

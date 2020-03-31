@@ -46,7 +46,7 @@ class ProjectFragment : BaseFragmentLazy<ProjectContract.View, ProjectContract.P
 
 
     override fun resultNav(nav: Nav) {
-        project_viewpager.offscreenPageLimit = nav.data.size
+        project_viewpager.offscreenPageLimit = 2
         val commonNavigator = CommonNavigator(context)
         commonNavigator.scrollPivotX = 0.5f //滚动中心点
         commonNavigator.isEnablePivotScroll

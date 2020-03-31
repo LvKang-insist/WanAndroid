@@ -5,4 +5,12 @@
         <item name="android:windowEnterAnimation">@anim/dialog_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/dialog_bottom_out</item>
     </style>
+
+    <!--WarpLinerLayout-->
+    <style name="WarpLinearLayoutDefault">
+        <item name="grivate">left</item>
+        <item name="horizontal_Space">20dp</item>
+        <item name="vertical_Space">20dp</item>
+        <item name="isFull">false</item>
+    </style>
 </resources>

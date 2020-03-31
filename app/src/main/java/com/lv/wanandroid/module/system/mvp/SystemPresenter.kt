@@ -12,8 +12,8 @@ import com.lv.wanandroid.module.system.bean.TreeBean
  * @description
  */
 
-class SystemPresenter : BasePresenter<ProjectPresenter.View, SystemModel>(),
-    ProjectPresenter.Presenter {
+class SystemPresenter : BasePresenter<HomeContract.View, SystemModel>(),
+    HomeContract.Presenter {
 
     override fun setModel(): IContract.BaseModel {
         return SystemModel()

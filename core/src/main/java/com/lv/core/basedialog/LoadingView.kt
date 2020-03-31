@@ -1,11 +1,13 @@
 package com.lv.core.basedialog
 
 import android.annotation.SuppressLint
-import android.os.Handler
-import android.os.Looper
 import android.view.Gravity
 import androidx.fragment.app.FragmentManager
 import com.lv.core.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * @author 345 QQ:1831712732
@@ -50,9 +52,12 @@ object LoadingView {
      * 延时关闭，毫秒为单位
      */
     fun stopLoading(time: Long) {
-        Handler(Looper.getMainLooper()).postAtTime({
-            stopLoading()
-        }, time)
+        GlobalScope.launch(Dispatchers.IO) {
+            delay(time)
+            launch (Dispatchers.Main){
+                stopLoading()
+            }
+        }
     }
 
     /**

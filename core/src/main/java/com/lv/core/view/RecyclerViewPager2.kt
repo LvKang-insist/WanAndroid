@@ -1,4 +1,4 @@
-package com.lv.wanandroid.module.system
+package com.lv.core.view
 
 import android.content.Context
 import android.util.AttributeSet

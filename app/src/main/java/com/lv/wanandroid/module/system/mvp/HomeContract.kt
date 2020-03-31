@@ -11,7 +11,7 @@ import com.lv.wanandroid.module.system.bean.TreeBean
  * @description
  */
 
-interface ProjectPresenter {
+interface HomeContract {
     interface View : IContract.IBaseView {
         fun result(data: List<TreeBean.Data>)
     }

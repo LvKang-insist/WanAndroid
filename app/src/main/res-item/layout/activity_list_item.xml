@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="10dp"
+    android:paddingRight="20dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/activity_list_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="消失了半年，这个 Android 界的第一骚货又回来了" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_list_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            tools:text="扔物线" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_list_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textSize="13sp"
+            tools:text="2020 - 3 - 25" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_list_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:lines="1"
+            android:textSize="13sp"
+            tools:text="干货资源" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#e3e3e3" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

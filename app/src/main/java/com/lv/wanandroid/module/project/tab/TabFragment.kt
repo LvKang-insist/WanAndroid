@@ -2,25 +2,24 @@ package com.lv.wanandroid.module.project.tab
 
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.elvishew.xlog.XLog
 import com.lv.wanandroid.R
-import com.lv.wanandroid.base.BaseFragment
+import com.lv.wanandroid.base.BaseFragmentLazy
 import com.lv.wanandroid.module.project.bean.Data
 import com.lv.wanandroid.module.project.bean.DataX
 import com.lv.wanandroid.module.project.tab.adapter.TabRvAdapter
 import com.lv.wanandroid.module.project.tab.mvp.TabContract
 import com.lv.wanandroid.module.project.tab.mvp.TabPresenter
 import com.lv.wanandroid.web.AgentWebActivity
-import com.lv.wanandroid.web.WebX5Activity
 import kotlinx.android.synthetic.main.frag_tab.*
 
+//https://www.wanandroid.com/blog/show/2666
 class TabFragment :
-    BaseFragment<TabContract.View, TabContract.Presenter>, TabContract.View {
+    BaseFragmentLazy<TabContract.View, TabContract.Presenter>, TabContract.View {
 
     private var curPage = 0
     private var pageCount = 0
     lateinit var nav: Data
-    lateinit var mAdapter: TabRvAdapter
+    var mAdapter: TabRvAdapter? = null
 
     constructor()
     constructor(nav: Data) {
@@ -36,8 +35,10 @@ class TabFragment :
     }
 
     override fun bindView() {
-        initRv()
-        request(0)
+        if (mAdapter == null || mAdapter!!.data.size <= 0) {
+            initRv()
+            request(0)
+        }
     }
 
     private fun initRv() {
@@ -53,7 +54,7 @@ class TabFragment :
                 tab_refresh.finishRefreshWithNoMoreData()
             }
         }
-        mAdapter.setOnItemClickListener { adapter, _, position ->
+        mAdapter?.setOnItemClickListener { adapter, _, position ->
             val data = adapter.data[position] as DataX
             val intent = Intent(context, AgentWebActivity::class.java)
             intent.putExtra("link", data.link)
@@ -69,9 +70,9 @@ class TabFragment :
         this.curPage = curPage
         this.pageCount = pageCount
         if (curPage == 0) {
-            mAdapter.setNewData(datas)
+            mAdapter?.setNewData(datas)
         } else {
-            mAdapter.addData(datas)
+            mAdapter?.addData(datas)
             tab_refresh.finishLoadMore()
         }
     }

@@ -8,7 +8,10 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.lv.wanandroid.R
 import com.lv.wanandroid.module.system.bean.TreeBean
 
-class RvLeftAdapterList(layoutResId: Int) : BaseQuickAdapter<TreeBean.Data, BaseViewHolder>(layoutResId) {
+class RvLeftAdapterLeft(layoutResId: Int) :
+    BaseQuickAdapter<TreeBean.Data, BaseViewHolder>(layoutResId) {
+
+    var listener: ((Int) -> Unit)? = null
 
     private var pos = 0
 
@@ -28,6 +31,15 @@ class RvLeftAdapterList(layoutResId: Int) : BaseQuickAdapter<TreeBean.Data, Base
             view.setBackgroundColor(Color.RED)
             notifyItemChanged(pos)
             pos = helper.adapterPosition
+            if (listener != null) {
+                listener?.let { it1 -> it1(pos) }
+            }
         }
+    }
+
+    fun setPos(position: Int) {
+        notifyItemChanged(pos)
+        this.pos = position
+        notifyItemChanged(pos)
     }
 }

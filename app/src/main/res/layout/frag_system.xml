@@ -17,7 +17,7 @@
         android:orientation="horizontal">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/frag_system_rv_list"
+            android:id="@+id/frag_system_rv_left"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:overScrollMode="never"

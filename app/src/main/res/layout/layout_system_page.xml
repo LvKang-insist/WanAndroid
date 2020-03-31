@@ -4,13 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="5dp"
-        android:background="#000000" />
-
-    <com.lv.wanandroid.module.system.RecyclerViewPager2
+    <com.lv.core.view.RecyclerViewPager2
         android:id="@+id/layout_system_page_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

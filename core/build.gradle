@@ -66,5 +66,5 @@ dependencies {
     //AgentWeb 进度条
     api 'com.github.Justson:CoolIndicator:v1.0.0'
 
-    api 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
+    api 'de.hdodenhof:circleimageview:3.0.0'
 }

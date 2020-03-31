@@ -1,11 +1,14 @@
 package com.lv.wanandroid.module.system.bean
 
-data class TreeBean(
+import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.lv.wanandroid.module.system.adapter.SystemItemType
+
+class TreeBean(
     val data: List<Data>,
     val errorCode: Int, // 0
     val errorMsg: String
 ) {
-    data class Data(
+    class Data(
         val children: List<Children>,
         val courseId: Int, // 13
         val id: Int, // 511
@@ -15,7 +18,7 @@ data class TreeBean(
         val userControlSetTop: Boolean, // false
         val visible: Int // 1
     ) {
-        data class Children(
+        class Children(
             val children: List<Any>,
             val courseId: Int, // 13
             val id: Int, // 525
@@ -24,6 +27,10 @@ data class TreeBean(
             val parentChapterId: Int, // 511
             val userControlSetTop: Boolean, // false
             val visible: Int // 1
-        )
+        ) : MultiItemEntity {
+            override fun getItemType(): Int {
+                return SystemItemType.ITEM_TYPE_RIGHT_CONTENT
+            }
+        }
     }
 }

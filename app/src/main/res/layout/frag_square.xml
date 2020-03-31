@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lv.core.view.StickyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/frag_square_img"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <HorizontalScrollView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            >
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/frag_square_hor_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </HorizontalScrollView>
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.lv.core.view.StickyScrollView>

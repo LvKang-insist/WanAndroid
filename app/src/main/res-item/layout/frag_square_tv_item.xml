@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:id="@+id/frag_square_tv_item"
+    android:layout_height="80dp"
+    android:background="@color/red"
+    android:textSize="18sp"
+    android:textColor="@color/black"
+    android:layout_marginLeft="15dp"
+    android:gravity="center"
+    android:orientation="vertical" />
