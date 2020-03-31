@@ -3,7 +3,7 @@ package com.lv.wanandroid.module.project.tab.mvp
 import com.lv.core.mvp.BasePresenter
 import com.lv.core.mvp.IContract
 import com.lv.wanandroid.module.project.bean.NavData
-import com.lv.wanandroid.module.project.mvp.TabModel
+import com.lv.wanandroid.module.square.tab.mvp.SquTabModel
 
 /**
  * @name WanAndroid-kotlin
@@ -13,11 +13,11 @@ import com.lv.wanandroid.module.project.mvp.TabModel
  * @description
  */
 
-class TabPresenter : BasePresenter<TabContract.View, TabModel>(),
+class TabPresenter : BasePresenter<TabContract.View, SquTabModel>(),
     TabContract.Presenter {
 
     override fun setModel(): IContract.BaseModel {
-        return TabModel()
+        return SquTabModel()
     }
 
     override fun requestNavData(curPage: Int, id: Int) {
