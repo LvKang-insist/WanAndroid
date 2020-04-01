@@ -20,7 +20,11 @@ class ListPresenter : BasePresenter<ListContract.View, ListModel>(),
         }
     }
 
-    override fun postSearch(id: Int, search: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun postSearch(page: Int, search: String) {
+        mModel.post("article/query/$page/json", mutableMapOf(Pair("k", search))) {
+            val article = it.format(Article::class.java)
+            val data = article.data
+            getView()?.resultList(data.curPage, data.pageCount, data.datas)
+        }
     }
 }

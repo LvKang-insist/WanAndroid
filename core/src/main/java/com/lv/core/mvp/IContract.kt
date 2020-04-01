@@ -45,6 +45,12 @@ interface IContract {
                     block(it)
                 }
         }
+
+        open fun post(url: String, params: MutableMap<String, Any>, block: (Result) -> Unit) {
+            LvHttp.post(url)
+                .addParam(params)
+                .send { block(it) }
+        }
     }
 
 }

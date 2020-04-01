@@ -1,10 +1,14 @@
 package com.lv.wanandroid.module.search
 
+import android.animation.AnimatorSet
+import android.animation.IntEvaluator
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import androidx.appcompat.widget.AppCompatTextView
+import com.hjq.toast.ToastUtils
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseActivity
 import com.lv.wanandroid.list.ListActivity
@@ -28,6 +32,29 @@ class SearchActivity : BaseActivity<SearchContract.View, SearchContract.Presente
 
     override fun bindView() {
         mPresenter.requestHotkey()
+        activity_serach_back.setOnClickListener { finish() }
+        activity_search_search.setOnClickListener {
+            startList(activity_search_edit.text.toString())
+        }
+        startAnimator()
+    }
+
+
+
+    private fun startAnimator() {
+        val animator = AnimatorSet()
+        val view = AnimView(activity_search_layout)
+        val layoutLeftAnim = ObjectAnimator.ofObject(
+            view, "LeftMargin", IntEvaluator(),
+            300, 0
+        )
+        val layoutRightAnim = ObjectAnimator.ofObject(
+            view, "RightMargin", IntEvaluator(),
+            300, 0
+        )
+        animator.playTogether(layoutLeftAnim, layoutRightAnim)
+        animator.duration = 500
+        animator.start()
     }
 
     override fun resultHotKey(hotKey: List<HotKey.Data>) {
@@ -39,12 +66,21 @@ class SearchActivity : BaseActivity<SearchContract.View, SearchContract.Presente
             text.text = it.name
             text.setTextColor(Color.parseColor(getRandColorCode()))
             text.setOnClickListener {
-                val intent = Intent(this, ListActivity::class.java)
-                intent.putExtra(ListActivity.KEY, ListActivity.SEARCH_LIST)
-                intent.putExtra("name", text.text!!)
-               startActivity(intent)
+                startList(text.text.toString())
             }
             activity_search_popular.addView(text)
+        }
+
+    }
+
+    private fun startList(text: String) {
+        if (text.isNotEmpty()) {
+            val intent = Intent(this, ListActivity::class.java)
+            intent.putExtra(ListActivity.KEY, ListActivity.SEARCH_LIST)
+            intent.putExtra("name", text)
+            startActivity(intent)
+        } else {
+            ToastUtils.show("搜索的内容不能为空!!!")
         }
 
     }

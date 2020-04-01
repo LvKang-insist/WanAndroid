@@ -12,12 +12,14 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/activity_serach_back"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="@dimen/dp_10"
+            android:padding="15dp"
             android:src="@drawable/ic_back" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/activity_search_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="6dp"
@@ -31,10 +33,11 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:src="@drawable/ic_search" />
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/activity_search_edit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -45,13 +48,14 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_search_search"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/search"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -63,7 +67,7 @@
         android:paddingStart="10sp"
         android:text="@string/popular_search"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="15sp"
         tools:ignore="RtlSymmetry" />
 
 
@@ -90,7 +94,7 @@
             android:gravity="center"
             android:text="@string/search_history"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="15sp"
             tools:ignore="RelativeOverlap" />
 
         <androidx.appcompat.widget.AppCompatImageView

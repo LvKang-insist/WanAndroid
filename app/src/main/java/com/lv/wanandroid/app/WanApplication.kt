@@ -5,19 +5,27 @@ import android.util.Log
 import com.elvishew.xlog.LogConfiguration
 import com.elvishew.xlog.XLog
 import com.hjq.toast.ToastUtils
+import com.squareup.leakcanary.LeakCanary
+import com.squareup.leakcanary.RefWatcher
 import com.tencent.smtt.sdk.QbSdk
 import com.www.net.LvCreator
 
 class WanApplication : Application() {
+
     override fun onCreate() {
         super.onCreate()
 
-        XLog.init(LogConfiguration.Builder().t().tag("345") .build())
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return
+        }
+        LeakCanary.install(this)
+        XLog.init(LogConfiguration.Builder().t().tag("345").build())
         ToastUtils.init(this)
         LvCreator
             .init("https://www.wanandroid.com/")
             .log(false)
-
         initX5()
     }
 
@@ -34,4 +42,5 @@ class WanApplication : Application() {
         //x5 初始化
         QbSdk.initX5Environment(this, cb)
     }
+
 }
