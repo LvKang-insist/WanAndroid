@@ -1,14 +1,11 @@
 package com.lv.wanandroid.module.square
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
-import androidx.appcompat.widget.AppCompatTextView
 import com.lv.core.basedialog.LoadingView
 import com.lv.core.utils.ViewPage2Helpter
 import com.lv.core.utils.dip2px
-import com.lv.core.utils.load
 import com.lv.core.view.TabTitleView
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseFragmentLazy
@@ -40,10 +37,6 @@ class SquareFragment : BaseFragmentLazy<SquareContract.View, SquareContract.Pres
     override fun bindView() {
         if (!isLoading) {
             LoadingView.showLoading("加载中", fragmentManager)
-            load(
-                "https://cn.bing.com/th?id=OHR.CarrickSpring_ZH-CN7085146237_1920x1080.jpg",
-                frag_square_img
-            )
             mPresenter.requestWx()
         }
     }
@@ -60,8 +53,8 @@ class SquareFragment : BaseFragmentLazy<SquareContract.View, SquareContract.Pres
 
             override fun getTitleView(context: Context, index: Int): IPagerTitleView {
                 val titleView = TabTitleView(context)
-                titleView.normalColor = resources.getColor(com.lv.wanandroid.R.color.black)
-                titleView.selectedColor = resources.getColor(com.lv.wanandroid.R.color.red)
+                titleView.normalColor = resources.getColor(R.color.black)
+                titleView.selectedColor = resources.getColor(R.color.red)
                 titleView.textSize = 18f
                 titleView.text = data[index].name
                 titleView.setOnClickListener {
@@ -76,7 +69,7 @@ class SquareFragment : BaseFragmentLazy<SquareContract.View, SquareContract.Pres
                 indicator.lineHeight = dip2px(context, 4f).toFloat()
                 indicator.startInterpolator = AccelerateInterpolator()
                 indicator.endInterpolator = DecelerateInterpolator(1.0f)
-                indicator.setColors(resources.getColor(com.lv.wanandroid.R.color.red))
+                indicator.setColors(resources.getColor(R.color.red))
                 indicator.roundRadius = 5f
                 indicator.mode = LinePagerIndicator.MODE_EXACTLY
                 return indicator

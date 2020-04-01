@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#ff2e3b</color>
+    <color name="colorPrimary">#0000FF</color>
     <color name="colorPrimaryDark">#ff2e3b</color>
     <color name="colorAccent">#FF4081</color>
+
+
+    <color name="mainPrimary">#FAFAFA</color>
+    <color name="mainPrimaryDark">#ff2e3b</color>
+    <color name="mainAccent">#FF4081</color>
+
 
     <!-- 透明色 -->
     <color name="transparent">#00000000</color>
@@ -71,7 +77,7 @@
     <!-- 橙色 -->
     <color name="orange">#FFA500</color>
     <!-- 背景色-->
-    <color name="back">#F2F2F2</color>
+    <color name="back">#FAFAFA</color>
 
     <!-- 灰暗的text-->
     <color name="color_text_gray">#333333</color>

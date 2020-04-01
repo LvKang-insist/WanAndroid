@@ -36,7 +36,7 @@ dependencies {
     api 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     //网络库
-    api 'com.github.LvKang-insist:LvHttp:1.0.5'
+    api 'com.github.LvKang-insist:LvHttp:1.0.6'
     //Toast
     api 'com.hjq:toast:8.0'
     //Log 工具

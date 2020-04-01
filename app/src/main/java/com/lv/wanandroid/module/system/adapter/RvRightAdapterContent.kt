@@ -11,8 +11,8 @@ import com.lv.core.recycler.MultipleRecyclerAdapter
 import com.lv.core.recycler.MultipleViewHolder
 import com.lv.core.view.WarpLinearLayout
 import com.lv.wanandroid.R
+import com.lv.wanandroid.list.ListActivity
 import com.lv.wanandroid.module.system.bean.TreeBean
-import com.lv.wanandroid.module.system.list.ListActivity
 
 /**
  * 体系右半边 Rv的适配器
@@ -48,6 +48,7 @@ class RvRightAdapterContent(data: List<MultipleItemEntity>) :
                         val pos = i
                         override fun onClick(v: View?) {
                             val intent = Intent(layout.context, ListActivity::class.java)
+                            intent.putExtra(ListActivity.KEY, ListActivity.SYSTEM_CONTENT_LIST)
                             intent.putExtra("id", list[pos].id)
                             intent.putExtra("name", list[pos].name)
                             layout.context.startActivity(intent)

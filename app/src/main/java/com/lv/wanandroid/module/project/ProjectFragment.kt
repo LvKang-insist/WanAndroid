@@ -58,8 +58,8 @@ class ProjectFragment : BaseFragmentLazy<ProjectContract.View, ProjectContract.P
 
             override fun getTitleView(context: Context, index: Int): IPagerTitleView {
                 val titleView = TabTitleView(context)
-                titleView.normalColor = resources.getColor(com.lv.wanandroid.R.color.black)
-                titleView.selectedColor = resources.getColor(com.lv.wanandroid.R.color.red)
+                titleView.normalColor = resources.getColor(R.color.black)
+                titleView.selectedColor = resources.getColor(R.color.red)
                 titleView.textSize = 18f
                 titleView.text = nav.data[index].name
                 titleView.setOnClickListener {
@@ -74,7 +74,7 @@ class ProjectFragment : BaseFragmentLazy<ProjectContract.View, ProjectContract.P
                 indicator.lineHeight = dip2px(context, 4f).toFloat()
                 indicator.startInterpolator = AccelerateInterpolator()
                 indicator.endInterpolator = DecelerateInterpolator(1.0f)
-                indicator.setColors(resources.getColor(com.lv.wanandroid.R.color.red))
+                indicator.setColors(resources.getColor(R.color.red))
                 indicator.roundRadius = 5f
                 indicator.mode = LinePagerIndicator.MODE_EXACTLY
                 return indicator

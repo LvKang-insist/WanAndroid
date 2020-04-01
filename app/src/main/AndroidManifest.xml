@@ -42,7 +42,8 @@
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true" />
 
-        <activity android:name=".module.system.list.ListActivity" />
+        <activity android:name="com.lv.wanandroid.list.ListActivity" />
+        <activity android:name=".module.search.SearchActivity" />
     </application>
 
 </manifest>
