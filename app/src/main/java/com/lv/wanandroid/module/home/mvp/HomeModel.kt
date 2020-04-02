@@ -25,7 +25,6 @@ class HomeModel : IContract.BaseModel() {
         }, {
             LvHttp.get().addUrl("article/list/0/json").send()
         })) {
-            XLog.e("哈哈哈--- ${Thread.currentThread().name}")
             block(Pair(format(it.first.value), format(it.second.value)))
         }
     }

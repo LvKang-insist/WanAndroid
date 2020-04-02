@@ -1,16 +1,22 @@
 package com.lv.wanandroid.main
 
 import android.content.Intent
+import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 import com.hjq.toast.ToastUtils
+import com.lv.core.utils.storage.PreferenceUtils
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseActivity
+import com.lv.wanandroid.login.LoginActivity
 import com.lv.wanandroid.main.adapter.VpAdapter
 import com.lv.wanandroid.main.mvp.MainContract
 import com.lv.wanandroid.main.mvp.MainPresenter
 import com.lv.wanandroid.module.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main_nav_header.*
 
 class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {
 
@@ -18,15 +24,30 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
         return R.layout.activity_main
     }
 
+    private lateinit var mName: AppCompatTextView
+
     override fun createPresenter(): MainContract.Presenter {
         return MainPresenter()
     }
 
     override fun bindView() {
-
         initTabLayout()
-
         initNav()
+        upData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        upData()
+    }
+
+    private fun upData() {
+
+        if (PreferenceUtils.login) {
+            mName.text = PreferenceUtils.userName
+        } else {
+            mName.text = "点击进行登录"
+        }
     }
 
     private fun initNav() {
@@ -35,6 +56,15 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 main_drawerLayout.closeDrawer(main_navigation)
             } else {
                 main_drawerLayout.openDrawer(main_navigation)
+            }
+        }
+        val layout: LinearLayoutCompat = main_navigation.getHeaderView(0) as LinearLayoutCompat
+        mName = layout.findViewById<AppCompatTextView>(R.id.activity_main_nav_name)
+        layout.setOnClickListener {
+            if (!PreferenceUtils.login) {
+                startActivity(Intent(this, LoginActivity::class.java))
+            } else {
+                ToastUtils.show("已登录")
             }
         }
         main_navigation.setNavigationItemSelectedListener {
