@@ -4,14 +4,14 @@
     package="com.lv.wanandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 友盟权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
         android:name=".app.WanApplication"
@@ -23,6 +23,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <!-- autosize 屏幕适配 -->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640" /> <!-- autosize 屏幕适配结束 -->
+        <!-- region 适配全面屏 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" /> <!-- endregion -->
+        <!-- 刘海屏适配 -->
+        <!--
+            由于目前市面上刘海屏各家一套，没有按照Android P官方进行适配，所以暂时不做刘海屏适配处理。
+            大部分厂家都已经对没有适配刘海屏的应用有自己的一套处理逻辑，我们的应用基本可以在大部分刘海屏手机上正常显示！
+        -->
+        <!-- 华为刘海区域展示 -->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" /> <!-- 小米刘海区域展示 -->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait" /> <!-- Auto-Size -->
+        <!-- value的值填写你在友盟后台申请的应用Appkey -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5e8586b7dbc2ec080a6d1291" />
+
         <activity
             android:name=".main.MainActivity"
             android:hardwareAccelerated="true">
@@ -32,18 +60,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".web.WebX5Activity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
-
         <activity
             android:name=".web.AgentWebActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true" />
-
-        <activity android:name="com.lv.wanandroid.list.ListActivity" />
+        <activity android:name=".list.ListActivity" />
         <activity android:name=".module.search.SearchActivity" />
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
     </application>
 
 </manifest>

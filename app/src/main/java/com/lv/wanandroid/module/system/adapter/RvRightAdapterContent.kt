@@ -70,5 +70,4 @@ class RvRightAdapterContent(data: List<MultipleItemEntity>) :
             }
         }
     }
-
 }

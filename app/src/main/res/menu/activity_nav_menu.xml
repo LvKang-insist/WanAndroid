@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!--    group：分组
+    checkableBehavior：只能单选-->
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_collect"
+            android:icon="@drawable/nav_collect"
+            android:title="@string/nav_collect" />
+        <item
+            android:id="@+id/nav_integral"
+            android:icon="@drawable/nav_integral"
+            android:title="@string/nav_integral" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/nav_settings"
+            android:title="@string/nav_settings" />
+
+        <item
+            android:id="@+id/nav_regard"
+            android:icon="@drawable/nav_regard"
+            android:title="@string/nav_regard" />
+
+    </group>
+
+
+</menu>

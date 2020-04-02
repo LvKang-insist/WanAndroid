@@ -5,14 +5,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/frag_agent_toolbar"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@android:color/white"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        app:contentInsetStartWithNavigation="0dp" />
+        android:layout_height="50dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/frag_agent_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:src="@drawable/ic_back" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/frag_agent_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:lines="1"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/frag_agent_share"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:src="@drawable/ic_share" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/frag_agent_linear"

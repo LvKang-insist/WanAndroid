@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.lv.core.mvp.IContract
+import com.umeng.analytics.MobclickAgent
 
 /**
  * @name WanAndroid-kotlin
@@ -27,6 +28,17 @@ abstract class BaseActivity<V : IContract.IBaseView, P : IContract.IBasePresente
         lifecycle.addObserver(mPresenter)
         initExtra(intent)
         bindView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //友盟统计
+        MobclickAgent.onResume(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        MobclickAgent.onPause(this)
     }
 
     open fun initExtra(intent: Intent) {}

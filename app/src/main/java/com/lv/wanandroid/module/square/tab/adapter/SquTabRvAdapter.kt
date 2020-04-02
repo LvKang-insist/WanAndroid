@@ -4,9 +4,9 @@ import android.content.Intent
 import androidx.appcompat.widget.AppCompatTextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.lv.core.utils.load
+import com.lv.core.utils.glideClear
+import com.lv.core.utils.glideLoad
 import com.lv.wanandroid.R
-import com.lv.wanandroid.module.project.bean.DataX
 import com.lv.wanandroid.module.square.bean.Wxarticle
 import com.lv.wanandroid.web.WebX5Activity
 
@@ -24,8 +24,11 @@ class SquTabRvAdapter(layoutResId: Int) :
                 intent.putExtra("link", item.projectLink)
                 it.context.startActivity(intent)
             }
-            load(item.envelopePic, helper.getView(R.id.tab_rv_iv))
+            glideLoad(item.envelopePic, helper.getView(R.id.tab_rv_iv))
         }
     }
 
+    override fun onViewRecycled(holder: BaseViewHolder) {
+        glideClear(holder.getView(R.id.tab_rv_iv))
+    }
 }

@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'walle'
 android {
+
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
@@ -12,15 +13,34 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        manifestPlaceholders = [qqappid: "101863419"]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        config {
+            storeFile file('wanAndroid.jks')
+            storePassword 'wanandroid'
+            keyAlias = 'wan'
+            keyPassword 'wanandroid'
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
+    }
+
+    walle {
+        // 指定渠道包的输出路径
+        apkOutputFolder = new File("${project.buildDir}/outputs/channels");
+        // 定制渠道包的APK的文件名称
+        apkFileNameFormat = '${appName}-${channel}-${buildType}-v${versionName}-${versionCode}.apk';
+        // 渠道配置文件
+        channelFile = new File("${project.getProjectDir()}/channel")
     }
 
     sourceSets {
@@ -31,7 +51,7 @@ android {
         }
     }
 
-    compileOptions{
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -43,4 +63,22 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(path: ':core')
+    //多渠道
+    implementation 'com.meituan.android.walle:library:1.1.6'
+
+    //内存泄露检测
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+
+    //友盟基础组件库和统计SDK库依赖
+    implementation 'com.umeng.umsdk:common:2.2.5'
+    implementation 'com.umeng.umsdk:analytics:8.1.1'
+    //友盟分享
+    implementation 'com.umeng.umsdk:share-core:6.9.8'
+    implementation 'com.umeng.umsdk:share-board:6.9.8'
+    implementation 'com.umeng.umsdk:share-qq:6.9.8'
+    implementation 'com.umeng.umsdk:share-wx:6.9.8'
+    implementation 'com.umeng.umsdk:share-sina:6.9.8'
+
+    //分享面板
+    api 'com.umeng.umsdk:share-board:6.9.8'
 }
