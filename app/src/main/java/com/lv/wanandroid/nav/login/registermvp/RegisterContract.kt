@@ -1,4 +1,4 @@
-package com.lv.wanandroid.login.registermvp
+package com.lv.wanandroid.nav.login.registermvp
 
 import com.lv.core.mvp.IContract
 

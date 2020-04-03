@@ -3,6 +3,7 @@ package com.lv.wanandroid.module.project
 import android.content.Context
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import android.view.animation.Interpolator
 import com.lv.core.basedialog.LoadingView
 import com.lv.core.utils.ViewPage2Helpter
 import com.lv.core.utils.dip2px
@@ -72,7 +73,7 @@ class ProjectFragment : BaseFragmentLazy<ProjectContract.View, ProjectContract.P
                 val indicator = LinePagerIndicator(context)
                 indicator.lineWidth = dip2px(context, 30f).toFloat()
                 indicator.lineHeight = dip2px(context, 4f).toFloat()
-                indicator.startInterpolator = AccelerateInterpolator()
+                indicator.startInterpolator = AccelerateInterpolator() as Interpolator?
                 indicator.endInterpolator = DecelerateInterpolator(1.0f)
                 indicator.setColors(resources.getColor(R.color.red))
                 indicator.roundRadius = 5f

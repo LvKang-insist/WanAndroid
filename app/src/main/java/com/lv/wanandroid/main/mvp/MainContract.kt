@@ -12,11 +12,9 @@ import com.lv.core.mvp.IContract
 
 interface MainContract {
     interface View : IContract.IBaseView {
-        fun showDialog(result:String)
-
+        fun upData()
     }
 
     interface Presenter : IContract.IBasePresenter<View> {
-        fun  request()
     }
 }

@@ -1,13 +1,12 @@
-package com.lv.wanandroid.login
+package com.lv.wanandroid.nav.login
 
 import android.content.Intent
 import com.hjq.toast.ToastUtils
 import com.lv.core.basedialog.LoadingView
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseActivity
-import com.lv.wanandroid.login.bean.LogBean
-import com.lv.wanandroid.login.loginmvp.LoginContract
-import com.lv.wanandroid.login.loginmvp.LoginPresenter
+import com.lv.wanandroid.nav.login.loginmvp.LoginContract
+import com.lv.wanandroid.nav.login.loginmvp.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
 
 /**
@@ -29,6 +28,7 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
     }
 
     override fun bindView() {
+        initBar(activity_home_close)
         initLogin()
     }
 

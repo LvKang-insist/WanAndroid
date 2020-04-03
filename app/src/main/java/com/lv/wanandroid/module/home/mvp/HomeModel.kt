@@ -1,6 +1,5 @@
 package com.lv.wanandroid.module.home.mvp
 
-import com.elvishew.xlog.XLog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.lv.core.mvp.IContract
@@ -26,12 +25,13 @@ class HomeModel : IContract.BaseModel() {
             LvHttp.get().addUrl("article/list/0/json").send()
         })) {
             block(Pair(format(it.first.value), format(it.second.value)))
+//            it.first.format("")
         }
     }
 
-     private inline fun <reified T> format(value: String): T {
-         return Gson().fromJson<T>(value, object : TypeToken<T>() {}.type)
-     }
+    private inline fun <reified T> format(value: String): T {
+        return Gson().fromJson<T>(value, object : TypeToken<T>() {}.type)
+    }
 
     fun requestArticlePage(page: Int, block: (BaseArticle<ArticlePage?>) -> Unit) {
         LvHttp.get("article/list/${page}/json").send {

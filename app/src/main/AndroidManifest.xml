@@ -23,17 +23,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <!--        在 9.0 上面闪退的问题-->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <!-- autosize 屏幕适配 -->
         <meta-data
             android:name="design_width_in_dp"
             android:value="360" />
         <meta-data
             android:name="design_height_in_dp"
-            android:value="640" /> <!-- autosize 屏幕适配结束 -->
+            android:value="640" />
+        <!-- autosize 屏幕适配结束 -->
+
         <!-- region 适配全面屏 -->
         <meta-data
             android:name="android.max_aspect"
-            android:value="2.4" /> <!-- endregion -->
+            android:value="2.4" />
         <!-- 刘海屏适配 -->
         <!--
             由于目前市面上刘海屏各家一套，没有按照Android P官方进行适配，所以暂时不做刘海屏适配处理。
@@ -42,11 +50,13 @@
         <!-- 华为刘海区域展示 -->
         <meta-data
             android:name="android.notch_support"
-            android:value="true" /> <!-- 小米刘海区域展示 -->
+            android:value="true" />
+        <!-- 小米刘海区域展示 -->
         <meta-data
             android:name="notch.config"
-            android:value="portrait" /> <!-- Auto-Size -->
-        <!-- value的值填写你在友盟后台申请的应用Appkey -->
+            android:value="portrait|landscape" />
+
+        <!-- 友盟Key ，value的值填写你在友盟后台申请的应用Appkey -->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5e8586b7dbc2ec080a6d1291" />
@@ -77,8 +87,8 @@
             android:screenOrientation="fullSensor"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <activity android:name=".login.LoginActivity" />
-        <activity android:name=".login.RegisterActivity" />
+        <activity android:name=".nav.login.LoginActivity" />
+        <activity android:name=".nav.login.RegisterActivity" />
 
     </application>
 

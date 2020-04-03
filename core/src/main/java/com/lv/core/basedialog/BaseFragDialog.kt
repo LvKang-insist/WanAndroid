@@ -44,6 +44,7 @@ open class BaseFragDialog internal constructor(
      */
     private val mGravity: Int
 ) : DialogFragment() {
+
     private var window: Window? = null
     private var mActivity: Activity? = null
     /**
@@ -162,7 +163,7 @@ open class BaseFragDialog internal constructor(
      * 延时发送，在指定的时间执行
      */
     fun postAtTime(uptimeMillis: Long, run: Runnable?) {
-        HANDLER.postDelayed(run, uptimeMillis)
+        HANDLER?.postDelayed(run, uptimeMillis)
     }
 
     /**
@@ -218,11 +219,15 @@ open class BaseFragDialog internal constructor(
         if (mActivity != null) {
             mActivity = null
         }
-        HANDLER.removeCallbacksAndMessages(null)
+        if (HANDLER != null) {
+            HANDLER?.removeCallbacksAndMessages(null)
+            HANDLER = null
+        }
+        requireFragmentManager()
     }
 
     companion object {
-        val HANDLER = Handler()
+        var HANDLER: Handler? = Handler()
         fun newInstance(
             view: Any?, alpha: Float,
             mAutoDismiss: Boolean, cancelable: Boolean,
@@ -231,8 +236,8 @@ open class BaseFragDialog internal constructor(
             return BaseFragDialog(view, alpha, mAutoDismiss, cancelable, animation, gravity)
         }
 
-        fun Builder(): DialogBuilder<*> {
-            return DialogBuilder<Any?>()
+        fun Builder(): DialogBuilder<BaseFragDialog> {
+            return DialogBuilder()
         }
     }
 

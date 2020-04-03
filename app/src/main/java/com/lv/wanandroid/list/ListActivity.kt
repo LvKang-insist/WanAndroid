@@ -18,9 +18,19 @@ class ListActivity : BaseActivity<ListContract.View, ListContract.Presenter>(), 
          * 体系右侧内容的列表，需要传入 name 和 id
          */
         const val SYSTEM_CONTENT_LIST = 0
+        /**
+         * 搜索列表
+         */
         const val SEARCH_LIST = 1
+        /**
+         * 个人收藏列表
+         */
+        const val COLLECT_LIST = 2
     }
 
+    /**
+     * 状态，需要请求那个数据
+     */
     private var state = -1
     //当前页码
     private var curPage = 0
@@ -47,6 +57,7 @@ class ListActivity : BaseActivity<ListContract.View, ListContract.Presenter>(), 
 
 
     override fun bindView() {
+        initBar(activity_list_toolbar)
         initRv()
         request()
     }
@@ -70,6 +81,9 @@ class ListActivity : BaseActivity<ListContract.View, ListContract.Presenter>(), 
                 }
                 SEARCH_LIST -> {
                     mPresenter.postSearch(curPage, name!!)
+                }
+                COLLECT_LIST -> {
+                    mPresenter.requestCollect(curPage)
                 }
             }
         } else {

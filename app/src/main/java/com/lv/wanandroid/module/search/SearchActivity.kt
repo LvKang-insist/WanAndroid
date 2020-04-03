@@ -31,6 +31,7 @@ class SearchActivity : BaseActivity<SearchContract.View, SearchContract.Presente
     }
 
     override fun bindView() {
+        initBar(activity_search_toolbar)
         mPresenter.requestHotkey()
         activity_serach_back.setOnClickListener { finish() }
         activity_search_search.setOnClickListener {
@@ -38,7 +39,6 @@ class SearchActivity : BaseActivity<SearchContract.View, SearchContract.Presente
         }
         startAnimator()
     }
-
 
 
     private fun startAnimator() {

@@ -16,6 +16,7 @@ class ToastDialog(
     animation: Int,
     gravity: Int
 ) : BaseFragDialog(view, alpha, autoDismiss, cancelable, animation, gravity) {
+
     private var mType: Type? = null
     private var mMessage: String? = null
     private var icon: AppCompatImageView? = null

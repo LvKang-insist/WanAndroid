@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lv.core.basedialog.LoadingView
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseFragmentLazy
+import com.lv.wanandroid.main.MainActivity
 import com.lv.wanandroid.module.home.adapter.BannerImgAdapter
 import com.lv.wanandroid.module.home.adapter.HomeRvAdapter
 import com.lv.wanandroid.module.home.bean.Article
@@ -14,8 +15,8 @@ import com.lv.wanandroid.module.home.bean.BannerData
 import com.lv.wanandroid.module.home.bean.Data
 import com.lv.wanandroid.module.home.mvp.HomeContract
 import com.lv.wanandroid.module.home.mvp.HomePresenter
+import com.lv.wanandroid.nav.collect.MyCollect
 import com.lv.wanandroid.web.AgentWebActivity
-import com.lv.wanandroid.web.WebX5Activity
 import com.youth.banner.listener.OnBannerListener
 import kotlinx.android.synthetic.main.frag_home.*
 
@@ -49,12 +50,6 @@ class HomeFragment : BaseFragmentLazy<HomeContract.View, HomeContract.Presenter>
         mPresenter.requestBanner()
         home_banner.setDelayTime(5000)
         home_banner.setBannerRound(8f)
-        //设置一屏多页的效果
-        /*home_banner.viewPager2.offscreenPageLimit = 1
-        val recyclerView = home_banner.viewPager2.getChildAt(0) as RecyclerView
-        val padding = resources.getDimensionPixelOffset(R.dimen._12) + resources.getDimensionPixelOffset(R.dimen._12)
-        recyclerView.setPadding(padding, 0, padding, 0)
-        recyclerView.clipToPadding = false;*/
     }
 
 
@@ -70,6 +65,13 @@ class HomeFragment : BaseFragmentLazy<HomeContract.View, HomeContract.Presenter>
             intent.putExtra("link", article.link)
             context?.startActivity(intent)
         }
+        //收藏文章
+        homeRvAdapter.setOnItemLongClickListener { adapter, view, position ->
+            val article: Article = adapter.data[position] as Article
+            MyCollect(article.id, article.title).start(childFragmentManager, context as MainActivity)
+            return@setOnItemLongClickListener true
+        }
+
         //刷新
         refreshLayout.setOnRefreshListener {
             mPresenter.requestArticle()
@@ -106,7 +108,7 @@ class HomeFragment : BaseFragmentLazy<HomeContract.View, HomeContract.Presenter>
             }
 
             override fun OnBannerClick(data: Data?, position: Int) {
-                val intent = Intent(context, WebX5Activity::class.java)
+                val intent = Intent(context, AgentWebActivity::class.java)
                 intent.putExtra("link", data?.url)
                 context?.startActivity(intent)
             }

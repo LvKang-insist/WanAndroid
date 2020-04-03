@@ -51,6 +51,7 @@ class AgentWebActivity : BaseWebAgentActivity<WebContract.View, WebContract.Pres
     }
 
     override fun bindView() {
+        initBar(frag_agent_toolbar)
         initWeb()
         frag_agent_back.setOnClickListener {
             if (mAgentWeb.webCreator.webView.canGoBack()) {

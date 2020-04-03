@@ -1,10 +1,12 @@
-package com.lv.wanandroid.login.registermvp
+package com.lv.wanandroid.nav.login.registermvp
 
 import com.elvishew.xlog.XLog
 import com.lv.core.mvp.BasePresenter
 import com.lv.core.mvp.IContract
 import com.lv.core.utils.storage.PreferenceUtils
-import com.lv.wanandroid.login.bean.LogBean
+import com.lv.wanandroid.nav.login.bean.LogBean
+import com.lv.wanandroid.nav.login.registermvp.RegisterContract
+import com.lv.wanandroid.nav.login.registermvp.RegisterModel
 import retrofit2.http.Body
 
 /**

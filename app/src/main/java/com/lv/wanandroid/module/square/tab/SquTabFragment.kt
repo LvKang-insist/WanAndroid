@@ -4,11 +4,13 @@ import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseFragmentLazy
-import com.lv.wanandroid.module.square.tab.mvp.SquTabPresenter
+import com.lv.wanandroid.main.MainActivity
 import com.lv.wanandroid.module.square.bean.Chapters
 import com.lv.wanandroid.module.square.bean.Wxarticle
 import com.lv.wanandroid.module.square.tab.adapter.SquTabRvAdapter
 import com.lv.wanandroid.module.square.tab.mvp.SquTabContract
+import com.lv.wanandroid.module.square.tab.mvp.SquTabPresenter
+import com.lv.wanandroid.nav.collect.MyCollect
 import com.lv.wanandroid.web.AgentWebActivity
 import kotlinx.android.synthetic.main.frag_tab.*
 
@@ -58,6 +60,14 @@ class SquTabFragment :
             val intent = Intent(context, AgentWebActivity::class.java)
             intent.putExtra("link", data.link)
             context?.startActivity(intent)
+        }
+        mAdapterSqu?.setOnItemLongClickListener { adapter, _, position ->
+            val data = adapter.data[position] as Wxarticle.Data.Data
+            MyCollect(data.id, data.title).start(
+                childFragmentManager,
+                context as MainActivity
+            )
+            return@setOnItemLongClickListener true
         }
     }
 

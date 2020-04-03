@@ -1,7 +1,7 @@
-package com.lv.wanandroid.login.loginmvp
+package com.lv.wanandroid.nav.login.loginmvp
 
 import com.lv.core.mvp.IContract
-import com.lv.wanandroid.login.bean.LogBean
+import com.lv.wanandroid.nav.login.bean.LogBean
 
 /**
  * @name WanAndroid-kotlin

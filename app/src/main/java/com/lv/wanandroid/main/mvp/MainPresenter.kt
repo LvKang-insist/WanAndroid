@@ -1,6 +1,5 @@
 package com.lv.wanandroid.main.mvp
 
-import com.elvishew.xlog.XLog
 import com.lv.core.mvp.BasePresenter
 import com.lv.core.mvp.IContract
 
@@ -16,17 +15,5 @@ class MainPresenter : BasePresenter<MainContract.View, MainModel>(),
     override fun setModel(): IContract.BaseModel {
         return MainModel()
     }
-
-
-    override fun request() {
-        mModel.request("https://www.baidu.com") {
-            getView()?.showDialog(it.value)
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-
+    
 }

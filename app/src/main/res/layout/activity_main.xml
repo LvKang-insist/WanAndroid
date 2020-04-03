@@ -5,6 +5,8 @@
     android:id="@+id/main_drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:overScrollMode="never"
+    android:scrollbars="none"
     tools:context=".main.MainActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -12,43 +14,37 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/main_menu_iv"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:padding="13dp"
                 android:src="@drawable/ic_menu" />
-
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/main_search_iv"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:src="@drawable/ic_search" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/main_tab"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_toStartOf="@id/main_search_iv"
-                android:layout_toEndOf="@id/main_menu_iv"
+                android:layout_weight="1"
                 app:tabIndicatorHeight="0dp"
                 app:tabSelectedTextColor="#ff0000"
                 app:tabTextAppearance="@style/TabLayoutTextStyle"
                 app:tabTextColor="#000000" />
 
-        </RelativeLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_search_iv"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:padding="13dp"
+                android:src="@drawable/ic_search" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/main_viewpager"

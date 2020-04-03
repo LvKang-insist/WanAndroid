@@ -161,5 +161,25 @@ object PreferenceUtils {
     val cookieLoginUserName: String?
         get() = getAppPreference(USER).getString("CookieName", null)
 
+    /**
+     * 获取 Cookie
+     */
+    val cookie: String
+        get() = "$cookieLoginUserName;$cookiePass"
+
+    /**
+     * 设置用户的所有信息
+     */
+    fun putAllLogin(
+        cookieUserName: String, cookiePass: String, userName: String, userId: Int,
+        isLogin: Boolean
+    ) {
+        putCookieLoginUserName(cookieUserName)
+        putCookiePass(cookiePass)
+        putUserName(userName)
+        putUserId(userId)
+        putLogin(isLogin)
+    }
+
 
 }

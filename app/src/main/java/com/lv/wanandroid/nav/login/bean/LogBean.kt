@@ -1,4 +1,4 @@
-package com.lv.wanandroid.login.bean
+package com.lv.wanandroid.nav.login.bean
 
 /**
  * @name WanAndroid-kotlin

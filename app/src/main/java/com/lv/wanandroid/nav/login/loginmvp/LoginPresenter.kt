@@ -1,10 +1,9 @@
-package com.lv.wanandroid.login.loginmvp
+package com.lv.wanandroid.nav.login.loginmvp
 
-import com.elvishew.xlog.XLog
 import com.lv.core.mvp.BasePresenter
 import com.lv.core.mvp.IContract
 import com.lv.core.utils.storage.PreferenceUtils
-import com.lv.wanandroid.login.bean.LogBean
+import com.lv.wanandroid.nav.login.bean.LogBean
 
 /**
  * @name WanAndroid-kotlin
@@ -14,7 +13,8 @@ import com.lv.wanandroid.login.bean.LogBean
  * @description
  */
 
-class LoginPresenter : BasePresenter<LoginContract.View, LoginModel>(), LoginContract.Presenter {
+class LoginPresenter : BasePresenter<LoginContract.View, LoginModel>(),
+    LoginContract.Presenter {
     override fun setModel(): IContract.BaseModel {
         return LoginModel()
     }
@@ -31,11 +31,14 @@ class LoginPresenter : BasePresenter<LoginContract.View, LoginModel>(), LoginCon
                         val start = it.second.indexOf('=')
                         val end = it.second.indexOf(';')
                         val subSequence = it.second.subSequence(start + 1, end)
-                        PreferenceUtils.putCookieLoginUserName("loginUserName=${data.data.username}")
-                        PreferenceUtils.putCookiePass("token_pass=$subSequence")
-                        PreferenceUtils.putUserName(data.data.username)
-                        PreferenceUtils.putUserId(data.data.id)
-                        PreferenceUtils.putLogin(true)
+                        //设置账户信息
+                        PreferenceUtils.putAllLogin(
+                            "loginUserName=${data.data.username}",
+                            "token_pass=$subSequence",
+                            data.data.username,
+                            data.data.id,
+                            true
+                        )
                         return@forEach
                     }
                 }

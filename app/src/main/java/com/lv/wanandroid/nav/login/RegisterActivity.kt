@@ -1,12 +1,12 @@
-package com.lv.wanandroid.login
+package com.lv.wanandroid.nav.login
 
 import com.hjq.toast.ToastUtils
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseActivity
-import com.lv.wanandroid.login.loginmvp.LoginContract
-import com.lv.wanandroid.login.registermvp.RegisterContract
-import com.lv.wanandroid.login.registermvp.RegisterPresenter
+import com.lv.wanandroid.nav.login.registermvp.RegisterContract
+import com.lv.wanandroid.nav.login.registermvp.RegisterPresenter
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 /**
  * @name WanAndroid-kotlin
@@ -29,6 +29,9 @@ class RegisterActivity : BaseActivity<RegisterContract.View, RegisterContract.Pr
 
     override fun bindView() {
         initRegister()
+        initBar(layout_toolbar)
+        layout_toolbar_title.text = resources.getString(R.string.register)
+        layout_toolbar_back.setOnClickListener { finish() }
     }
 
     private fun initRegister() {

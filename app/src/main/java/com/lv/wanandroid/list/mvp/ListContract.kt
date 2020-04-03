@@ -11,6 +11,7 @@ interface ListContract {
     interface Presenter : IContract.IBasePresenter<View> {
         fun requestList(id: Int, page: Int)
         fun postSearch(page: Int, search: String)
+        fun requestCollect(page: Int)
     }
 }
 

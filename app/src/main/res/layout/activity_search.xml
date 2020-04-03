@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/activity_search_toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">

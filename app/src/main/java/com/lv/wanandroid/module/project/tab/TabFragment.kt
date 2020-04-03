@@ -4,12 +4,13 @@ import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lv.wanandroid.R
 import com.lv.wanandroid.base.BaseFragmentLazy
+import com.lv.wanandroid.main.MainActivity
 import com.lv.wanandroid.module.project.bean.Data
 import com.lv.wanandroid.module.project.bean.DataX
 import com.lv.wanandroid.module.project.tab.adapter.TabRvAdapter
-import com.lv.wanandroid.module.square.tab.adapter.SquTabRvAdapter
 import com.lv.wanandroid.module.project.tab.mvp.TabContract
 import com.lv.wanandroid.module.project.tab.mvp.TabPresenter
+import com.lv.wanandroid.nav.collect.MyCollect
 import com.lv.wanandroid.web.AgentWebActivity
 import kotlinx.android.synthetic.main.frag_tab.*
 
@@ -20,7 +21,7 @@ class TabFragment :
     private var curPage = 0
     private var pageCount = 0
     lateinit var nav: Data
-    var mAdapterSqu: TabRvAdapter? = null
+    var mRvAdapter: TabRvAdapter? = null
 
     constructor()
     constructor(nav: Data) {
@@ -36,7 +37,7 @@ class TabFragment :
     }
 
     override fun bindView() {
-        if (mAdapterSqu == null || mAdapterSqu!!.data.size <= 0) {
+        if (mRvAdapter == null || mRvAdapter!!.data.size <= 0) {
             initRv()
             request(0)
         }
@@ -45,8 +46,8 @@ class TabFragment :
     private fun initRv() {
         tab_recycler.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        mAdapterSqu = TabRvAdapter(R.layout.tab_rv_item)
-        tab_recycler.adapter = mAdapterSqu
+        mRvAdapter = TabRvAdapter(R.layout.tab_rv_item)
+        tab_recycler.adapter = mRvAdapter
         tab_refresh.setEnableRefresh(false)
         tab_refresh.setOnLoadMoreListener {
             if (++curPage < pageCount) {
@@ -55,11 +56,19 @@ class TabFragment :
                 tab_refresh.finishRefreshWithNoMoreData()
             }
         }
-        mAdapterSqu?.setOnItemClickListener { adapter, _, position ->
+        mRvAdapter?.setOnItemClickListener { adapter, _, position ->
             val data = adapter.data[position] as DataX
             val intent = Intent(context, AgentWebActivity::class.java)
             intent.putExtra("link", data.link)
             context?.startActivity(intent)
+        }
+        mRvAdapter?.setOnItemLongClickListener { adapter, view, position ->
+            val data = adapter.data[position] as DataX
+            MyCollect(data.id, data.title ?: "").start(
+                childFragmentManager,
+                context as MainActivity
+            )
+            return@setOnItemLongClickListener true
         }
     }
 
@@ -71,9 +80,9 @@ class TabFragment :
         this.curPage = curPage
         this.pageCount = pageCount
         if (curPage == 0) {
-            mAdapterSqu?.setNewData(datas)
+            mRvAdapter?.setNewData(datas)
         } else {
-            mAdapterSqu?.addData(datas)
+            mRvAdapter?.addData(datas)
             tab_refresh.finishLoadMore()
         }
     }

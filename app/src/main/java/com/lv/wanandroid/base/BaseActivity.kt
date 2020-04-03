@@ -2,7 +2,9 @@ package com.lv.wanandroid.base
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.gyf.immersionbar.ImmersionBar
 import com.lv.core.mvp.IContract
 import com.umeng.analytics.MobclickAgent
 
@@ -28,6 +30,17 @@ abstract class BaseActivity<V : IContract.IBaseView, P : IContract.IBasePresente
         lifecycle.addObserver(mPresenter)
         initExtra(intent)
         bindView()
+    }
+
+    /**
+     * 初始化状态栏，可更具需求重写
+     */
+    fun initBar(toolbar: View) {
+        ImmersionBar.with(this)
+            //解决状态栏白色的问题，如果不支持变色，则加上透明度
+            .statusBarDarkFont(true, 0.2f)
+            .titleBar(toolbar)
+            .init()
     }
 
     override fun onResume() {

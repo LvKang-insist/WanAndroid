@@ -1,6 +1,7 @@
 package com.lv.core.basedialog
 
 import android.animation.ObjectAnimator
+import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
 import android.view.View
 import android.view.Window
@@ -42,7 +43,7 @@ class CustomSpinDialog(
         val objectAnimator = ObjectAnimator.ofFloat(imageView, "rotation", 0f, 360f)
         objectAnimator.repeatCount = ValueAnimator.INFINITE
         objectAnimator.duration = time.toLong()
-        objectAnimator.interpolator = LinearInterpolator()
+        objectAnimator.interpolator = LinearInterpolator() as TimeInterpolator?
         objectAnimator.start()
         //取消背景遮罩
         setBackgroundDimEnabled(false)

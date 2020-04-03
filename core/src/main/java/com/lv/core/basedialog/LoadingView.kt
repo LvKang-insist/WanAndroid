@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 object LoadingView {
     @SuppressLint("StaticFieldLeak")
     private var mLoadingDilaog: ToastDialog? = null
-    private var mDialogIsShow = false
+
     /**
      * 初始化 loading
      *
@@ -35,17 +35,14 @@ object LoadingView {
             .setGravity(Gravity.CENTER)
             .build()
             .setMessage(msg)
-        mDialogIsShow = true
     }
 
     /**
      * 关闭 Loading
      */
     fun stopLoading() {
-        if (mLoadingDilaog != null && mDialogIsShow) {
-            mLoadingDilaog!!.dismiss()
-            mLoadingDilaog = null
-        }
+        mLoadingDilaog?.dismiss()
+        mLoadingDilaog = null
     }
 
     /**
@@ -54,7 +51,7 @@ object LoadingView {
     fun stopLoading(time: Long) {
         GlobalScope.launch(Dispatchers.IO) {
             delay(time)
-            launch (Dispatchers.Main){
+            launch(Dispatchers.Main) {
                 stopLoading()
             }
         }
