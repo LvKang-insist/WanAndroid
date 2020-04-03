@@ -13,8 +13,20 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = [qqappid: "101863419"]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                //个推应用参数，请填写您申请的 GETUI_APP_ID，GETUI_APP_KEY，GETUI_APP_SECRET 值
+                GETUI_APP_ID    : "b7E31g7F7K6MA0s8xiWnZA",
+                GETUI_APP_KEY   : "WsREukoQmf8D2HO6Bzitm9",
+                GETUI_APP_SECRET: "LLkcDrvaLn6PpQUWP5zD81",
+                //友盟 分享QQ ID
+                qqappid         : "101863419"
+        ]
+        ndk {
+            // 注意：这里需要添加项目所需 CPU 类型的最小集
+            abiFilters "armeabi", "armeabi-v7a", "x86_64", "x86"
+        }
     }
 
     signingConfigs {
@@ -81,4 +93,7 @@ dependencies {
 
     //分享面板
     api 'com.umeng.umsdk:share-board:6.9.8'
+
+    //个推
+    implementation 'com.getui:sdk:2.14.0.0'
 }
