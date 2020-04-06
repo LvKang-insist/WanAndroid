@@ -1,6 +1,5 @@
 package com.lv.core.basedialog
 
-import android.annotation.SuppressLint
 import android.view.Gravity
 import androidx.fragment.app.FragmentManager
 import com.lv.core.R
@@ -8,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.lang.ref.WeakReference
 
 /**
  * @author 345 QQ:1831712732
@@ -17,8 +17,8 @@ import kotlinx.coroutines.launch
  * @description 全局加载对话框
  */
 object LoadingView {
-    @SuppressLint("StaticFieldLeak")
-    private var mLoadingDilaog: ToastDialog? = null
+
+    var mdialog: WeakReference<ToastDialog>? = null
 
     /**
      * 初始化 loading
@@ -26,23 +26,25 @@ object LoadingView {
      * @param msg 消息
      */
     private fun createLoadingDialog(msg: String) {
-        var msg: String? = msg
-        if (msg == null) {
-            msg = "正在加载..."
+
+        var message: String? = msg
+        if (message == null) {
+            message = "正在加载..."
         }
-        mLoadingDilaog = ToastDialog.Companion.ToastBuilder()
-            .setContentView(R.layout.dialog_toast)
-            .setGravity(Gravity.CENTER)
-            .build()
-            .setMessage(msg)
+        mdialog = WeakReference(
+            ToastDialog.Companion.ToastBuilder()
+                .setContentView(R.layout.dialog_toast)
+                .setGravity(Gravity.CENTER)
+                .build()
+                .setMessage(message)
+        )
     }
 
     /**
      * 关闭 Loading
      */
     fun stopLoading() {
-        mLoadingDilaog?.dismiss()
-        mLoadingDilaog = null
+        mdialog?.get()?.dismiss()
     }
 
     /**
@@ -66,13 +68,12 @@ object LoadingView {
         msg: String,
         manager: FragmentManager?
     ) {
-        if (mLoadingDilaog == null) {
-            createLoadingDialog(msg)
-        }
-        if (!mLoadingDilaog!!.isVisible) {
-            mLoadingDilaog!!
+        createLoadingDialog(msg)
+        if (!mdialog?.get()!!.isVisible) {
+            mdialog?.get()!!
                 .setType(ToastDialog.Type.LOADING)
                 .show(manager!!, "latte")
+            stopLoading(3000)
         }
     }
 }

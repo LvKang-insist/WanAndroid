@@ -21,8 +21,9 @@
         android:drawableStart="@drawable/ic_user"
         android:drawablePadding="10dp"
         android:hint="@string/user_name"
+        android:inputType="text"
         android:lines="1"
-        android:maxLines="1"/>
+        android:maxLines="1" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/activity_register_password"

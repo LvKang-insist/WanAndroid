@@ -17,6 +17,7 @@ import com.lv.wanandroid.module.system.bean.TreeBean
 /**
  * 体系右半边 Rv的适配器
  */
+@Suppress("NAME_SHADOWING")
 class RvRightAdapterContent(data: List<MultipleItemEntity>) :
     MultipleRecyclerAdapter(data) {
 

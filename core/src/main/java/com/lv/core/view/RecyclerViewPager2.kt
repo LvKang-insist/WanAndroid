@@ -11,7 +11,7 @@ import kotlin.math.abs
  * @class name：com.lv.wanandroid.module.system
  * @author 345 QQ:1831712732
  * @time 2020/3/30 22:56
- * @description
+ * @description 解决 ViewPager2 嵌套 RecyclerView 冲突的问题
  */
 class RecyclerViewPager2 : RecyclerView {
 

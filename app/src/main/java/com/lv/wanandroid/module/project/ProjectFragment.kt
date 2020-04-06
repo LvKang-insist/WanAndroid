@@ -23,6 +23,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTit
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
 
 
+@Suppress("DEPRECATION")
 class ProjectFragment : BaseFragmentLazy<ProjectContract.View, ProjectContract.Presenter>(),
 
     ProjectContract.View {

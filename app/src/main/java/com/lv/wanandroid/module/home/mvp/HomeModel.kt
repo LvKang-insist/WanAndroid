@@ -2,6 +2,7 @@ package com.lv.wanandroid.module.home.mvp
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.hjq.toast.ToastUtils
 import com.lv.core.mvp.IContract
 import com.lv.wanandroid.module.home.bean.Article
 import com.lv.wanandroid.module.home.bean.ArticlePage
@@ -24,8 +25,11 @@ class HomeModel : IContract.BaseModel() {
         }, {
             LvHttp.get().addUrl("article/list/0/json").send()
         })) {
-            block(Pair(format(it.first.value), format(it.second.value)))
-//            it.first.format("")
+            if (it.first != null && it.second != null) {
+                block(Pair(format(it.first!!.value), format(it.second!!.value)))
+            } else {
+                ToastUtils.show("网络错误")
+            }
         }
     }
 
@@ -38,6 +42,4 @@ class HomeModel : IContract.BaseModel() {
             block(format(it.value))
         }
     }
-
-
 }

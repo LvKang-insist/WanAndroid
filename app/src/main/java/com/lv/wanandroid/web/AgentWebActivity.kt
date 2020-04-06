@@ -91,7 +91,7 @@ class AgentWebActivity : BaseWebAgentActivity<WebContract.View, WebContract.Pres
                     SHARE_MEDIA.WEIXIN,
                     SHARE_MEDIA.WEIXIN_CIRCLE
                 )
-                .setShareboardclickCallback { snsPlatform, shareMedia ->
+                .setShareboardclickCallback { _, shareMedia ->
                     when (shareMedia) {
                         SHARE_MEDIA.QQ -> {
                             ShareAction(this)
@@ -162,6 +162,5 @@ class AgentWebActivity : BaseWebAgentActivity<WebContract.View, WebContract.Pres
             .go(link)
 
     }
-
 
 }

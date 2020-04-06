@@ -24,6 +24,14 @@ abstract class BaseActivity<V : IContract.IBaseView, P : IContract.IBasePresente
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
+
+        //实现灰度化
+       /* val paint = Paint()
+        val cm = ColorMatrix()
+        cm.setSaturation(0f)
+        paint.colorFilter = ColorMatrixColorFilter(cm)
+        window.decorView.setLayerType(View.LAYER_TYPE_HARDWARE, paint)*/
+
         mPresenter = createPresenter()
         mPresenter.attachView(this as V, savedInstanceState)
         //P 层感知生命周期
@@ -31,6 +39,27 @@ abstract class BaseActivity<V : IContract.IBaseView, P : IContract.IBasePresente
         initExtra(intent)
         bindView()
     }
+
+    /**
+     * 实现界面灰度
+     */
+    /* override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+         if ("FrameLayout" == name) {
+             val count = attrs.attributeCount
+             for (i in 0 until count) {
+                 val attributeName = attrs.getAttributeName(i)
+                 val attributeValue = attrs.getAttributeValue(i)
+                 if (attributeName == "id") {
+                     val id = attributeValue.substring(1).toInt()
+                     val idVal = resources.getResourceName(id)
+                     if ("android:id/content".equals(idVal)) {
+                         return GrayFrameLayout(context, attrs)
+                     }
+                 }
+             }
+         }
+         return super.onCreateView(name, context, attrs)
+     }*/
 
     /**
      * 初始化状态栏，可更具需求重写

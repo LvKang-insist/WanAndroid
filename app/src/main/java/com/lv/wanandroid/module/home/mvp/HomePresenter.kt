@@ -27,16 +27,16 @@ class HomePresenter : BasePresenter<HomeContract.View, HomeModel>(), HomeContrac
         mModel.requestArticle { pair ->
             val list1 = pair.first.data
             val list2 = pair.second.data?.datas
-            val pageCount = pair.second.data?.pageCount
-            val curPage = pair.second.data?.curPage
+            val pageCount = pair.second.data?.pageCount!!
+            val curPage = pair.second.data?.curPage!!
             if (list2 != null && list2.size > 0) {
                 list1?.let {
                     it.addAll(list2)
-                    getView()?.resultArticle(pageCount!!, curPage!!, it)
-                } ?: getView()?.resultArticle(pageCount!!, curPage!!, list2)
+                    getView()?.resultArticle(pageCount, curPage, it)
+                } ?: getView()?.resultArticle(pageCount, curPage, list2)
             } else {
                 if (list1 != null && list1.size > 0) {
-                    getView()?.resultArticle(pageCount!!, curPage!!, list1)
+                    getView()?.resultArticle(pageCount, curPage, list1)
                 }
             }
         }

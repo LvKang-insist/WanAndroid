@@ -62,7 +62,7 @@ class TabFragment :
             intent.putExtra("link", data.link)
             context?.startActivity(intent)
         }
-        mRvAdapter?.setOnItemLongClickListener { adapter, view, position ->
+        mRvAdapter?.setOnItemLongClickListener { adapter, _, position ->
             val data = adapter.data[position] as DataX
             MyCollect(data.id, data.title ?: "").start(
                 childFragmentManager,

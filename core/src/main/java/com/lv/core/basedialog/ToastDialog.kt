@@ -102,4 +102,8 @@ class ToastDialog(
             return DialogBuilder(ToastDialog::class.java)
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 }

@@ -124,5 +124,13 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                    }
                }).attach()*/
     }
+
+    override fun onBackPressed() {
+        if (main_drawerLayout.isDrawerOpen(main_navigation)) {
+            main_drawerLayout.closeDrawer(main_navigation)
+        } else {
+            finish()
+        }
+    }
 }
 
