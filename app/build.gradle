@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'walle'
+apply from: 'tinker-support.gradle'
 android {
 
     compileSdkVersion 29
@@ -68,7 +69,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -96,4 +99,10 @@ dependencies {
 
     //个推
     implementation 'com.getui:sdk:2.14.0.0'
+
+    implementation "com.android.support:multidex:1.0.3" // 多dex配置
+    implementation 'com.tencent.bugly:crashreport_upgrade:1.4.2'
+    // 指定tinker依赖版本（注：应用升级1.3.5版本起，不再内置tinker）
+    implementation 'com.tencent.tinker:tinker-android-lib:1.9.9'
+    implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
 }

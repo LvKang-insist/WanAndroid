@@ -24,7 +24,7 @@ class LoginPresenter : BasePresenter<LoginContract.View, LoginModel>(),
             mutableMapOf<String, Any>(Pair("username", name), Pair("password", password))
         mModel.post("user/login", params) { result ->
             val data = result.format(LogBean::class.java)
-            val headers = result.response?.headers()
+            val headers = result.response?.headers
             if (data.errorCode != -1) {
                 headers?.forEach {
                     if (it.second.startsWith("token_pass=")) {

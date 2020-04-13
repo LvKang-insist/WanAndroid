@@ -13,8 +13,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
 
 
     <!-- iBeancon 功能所需权限 -->
@@ -79,9 +81,9 @@
             android:value="portrait|landscape" />
 
         <!-- 友盟Key ，value的值填写你在友盟后台申请的应用Appkey -->
-<!--        <meta-data-->
-<!--            android:name="UMENG_APPKEY"-->
-<!--            android:value="5e8586b7dbc2ec080a6d1291" />-->
+        <!--        <meta-data-->
+        <!--            android:name="UMENG_APPKEY"-->
+        <!--            android:value="5e8586b7dbc2ec080a6d1291" />-->
 
         <activity
             android:name=".wxapi.WXEntryActivity"
@@ -90,10 +92,26 @@
             android:screenOrientation="fullSensor"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <!-- - - - - - - - - - - - - - - - - Bugly- - - - - - - - - - - - - - - - - - - - -->
+       <!-- <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>-->
+        <!-- - - - - - - - - - - - - - - - - Bugly- - - - - - - - - - - - - - - - - - - - -->
+
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -128,7 +146,6 @@
             android:hardwareAccelerated="true" />
         <activity android:name=".list.ListActivity" />
         <activity android:name=".module.search.SearchActivity" />
-
 
 
         <activity android:name=".nav.login.LoginActivity" />

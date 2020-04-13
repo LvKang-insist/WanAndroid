@@ -1,7 +1,5 @@
 package com.lv.wanandroid.module.home.mvp
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.hjq.toast.ToastUtils
 import com.lv.core.mvp.IContract
 import com.lv.wanandroid.module.home.bean.Article
@@ -26,20 +24,21 @@ class HomeModel : IContract.BaseModel() {
             LvHttp.get().addUrl("article/list/0/json").send()
         })) {
             if (it.first != null && it.second != null) {
-                block(Pair(format(it.first!!.value), format(it.second!!.value)))
+                block(
+                    Pair(
+                        it.first!!.format(it.first!!.value),
+                        it.second!!.format(it.second!!.value)
+                    )
+                )
             } else {
                 ToastUtils.show("网络错误")
             }
         }
     }
 
-    private inline fun <reified T> format(value: String): T {
-        return Gson().fromJson<T>(value, object : TypeToken<T>() {}.type)
-    }
-
     fun requestArticlePage(page: Int, block: (BaseArticle<ArticlePage?>) -> Unit) {
         LvHttp.get("article/list/${page}/json").send {
-            block(format(it.value))
+            block(it.format(it.value))
         }
     }
 }

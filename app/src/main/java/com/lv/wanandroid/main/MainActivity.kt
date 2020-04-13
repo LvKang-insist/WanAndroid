@@ -38,6 +38,14 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
         upData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (PreferenceUtils.isAccount) {
+            upData()
+            PreferenceUtils.putIsAccount(false)
+        }
+    }
+
     private fun initDrawer() {
         main_menu_iv.setOnClickListener {
             if (main_drawerLayout.isDrawerOpen(main_navigation)) {
@@ -97,7 +105,6 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     }
 
     override fun upData() {
-
         if (PreferenceUtils.login) {
             mName?.text = PreferenceUtils.userName
         } else {

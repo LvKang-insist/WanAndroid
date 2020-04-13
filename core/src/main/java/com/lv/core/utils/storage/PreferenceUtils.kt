@@ -6,7 +6,7 @@ import com.lv.core.utils.AppContext.Companion.getApplication
 /**
  * Copyright (C)
  *
- * @file: LattePreference
+ * @file: PreferenceUtils
  * @author: 345
  * @Time: 2019/4/21 11:25
  * @description:
@@ -149,8 +149,7 @@ object PreferenceUtils {
      * @param cookieName tokenId
      */
     fun putCookieLoginUserName(cookieName: String?) {
-        getAppPreferenceEdit(USER).putString("CookieName", cookieName)
-            .commit()
+        getAppPreferenceEdit(USER).putString("CookieName", cookieName).commit()
     }
 
     /**
@@ -167,6 +166,20 @@ object PreferenceUtils {
     val cookie: String
         get() = "$cookieLoginUserName;$cookiePass"
 
+
+    /**
+     * 设置账户信息是否发生了改变
+     */
+    fun putIsAccount(isAccount: Boolean) {
+        getAppPreferenceEdit(USER).putBoolean("isAccount", isAccount).commit()
+    }
+
+    /**
+     * 获取账户信息是否发生改变
+     */
+    val isAccount: Boolean
+        get() = getAppPreference(USER).getBoolean("isAccount", false)
+
     /**
      * 设置用户的所有信息
      */
@@ -179,6 +192,7 @@ object PreferenceUtils {
         putUserName(userName)
         putUserId(userId)
         putLogin(isLogin)
+        putIsAccount(true)
     }
 
 

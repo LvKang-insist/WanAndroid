@@ -25,12 +25,12 @@ abstract class BaseActivity<V : IContract.IBaseView, P : IContract.IBasePresente
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
 
-        //实现灰度化
-       /* val paint = Paint()
-        val cm = ColorMatrix()
-        cm.setSaturation(0f)
-        paint.colorFilter = ColorMatrixColorFilter(cm)
-        window.decorView.setLayerType(View.LAYER_TYPE_HARDWARE, paint)*/
+//        //实现灰度化
+//        val paint = Paint()
+//        val cm = ColorMatrix()
+//        cm.setSaturation(0f)
+//        paint.colorFilter = ColorMatrixColorFilter(cm)
+//        window.decorView.setLayerType(View.LAYER_TYPE_HARDWARE, paint)
 
         mPresenter = createPresenter()
         mPresenter.attachView(this as V, savedInstanceState)
