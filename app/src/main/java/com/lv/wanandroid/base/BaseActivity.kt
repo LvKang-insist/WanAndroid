@@ -36,6 +36,7 @@ abstract class BaseActivity<V : IContract.IBaseView, P : IContract.IBasePresente
         mPresenter.attachView(this as V, savedInstanceState)
         //P 层感知生命周期
         lifecycle.addObserver(mPresenter)
+
         initExtra(intent)
         bindView()
     }

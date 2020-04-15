@@ -1,5 +1,6 @@
 package com.lv.wanandroid.app
 
+import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
 import android.content.Intent
@@ -20,6 +21,9 @@ import com.umeng.commonsdk.UMConfigure
 import com.umeng.socialize.PlatformConfig
 import com.umeng.socialize.UMShareAPI
 import com.www.net.LvCreator
+import com.xiaomi.channel.commonutils.logger.LoggerInterface
+import com.xiaomi.mipush.sdk.Logger
+import com.xiaomi.mipush.sdk.MiPushClient
 
 
 class SampleApplicationLike(
@@ -38,10 +42,24 @@ class SampleApplicationLike(
     tinkerResultIntent
 ) {
 
-    val TAG = "Tinker.SampleApplicationLike"
+    override fun onBaseContextAttached(base: Context?) {
+        super.onBaseContextAttached(base)
+        // you must install multiDex whatever tinker is installed!
+        MultiDex.install(base);
+        // 安装tinker
+        // TinkerManager.installTinker(this); 替换成下面Bugly提供的方法
+        Beta.installTinker(this);
+    }
+
+    fun registerActivityLifecycleCallback(callbacks: Application.ActivityLifecycleCallbacks) {
+        application.registerActivityLifecycleCallbacks(callbacks)
+    }
+
 
     override fun onCreate() {
         super.onCreate()
+        init()
+        initX5()
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
         // 调试时，将第三个参数改为true
         Bugly.init(application, "4978c94036", true)
@@ -53,23 +71,27 @@ class SampleApplicationLike(
             application
         ) { p0 -> Log.i("PUSH_LOG", p0) }
 
-        init()
-        initX5()
+
+
+        if (shouldInit()) {
+            MiPushClient.registerPush(application, "2882303761518368324", "5691836838324")
+        }
+        val newLogger = object : LoggerInterface {
+            override fun setTag(p0: String?) {
+
+            }
+
+            override fun log(p0: String) {
+                Log.d("MiPush：", p0);
+            }
+
+            override fun log(p0: String?, p1: Throwable?) {
+                Log.d("MiPush：", p0, p1);
+            }
+        }
+        Logger.setLogger(application, newLogger)
     }
 
-    override fun onBaseContextAttached(base: Context?) {
-        super.onBaseContextAttached(base)
-
-        // you must install multiDex whatever tinker is installed!
-        MultiDex.install(base);
-        // 安装tinker
-        // TinkerManager.installTinker(this); 替换成下面Bugly提供的方法
-        Beta.installTinker(this);
-    }
-
-    fun registerActivityLifecycleCallback(callbacks: Application.ActivityLifecycleCallbacks) {
-        application.registerActivityLifecycleCallbacks(callbacks)
-    }
 
     private fun init() {
 
@@ -103,10 +125,6 @@ class SampleApplicationLike(
         LvCreator
             .init("https://www.wanandroid.com/")
             .log(false)
-
-//        val config = AppWatcher.config.
-//            copy(watchFragmentViews = false)
-//        AppWatcher.config = config
     }
 
     private fun initX5() {
@@ -121,5 +139,18 @@ class SampleApplicationLike(
         }
         //x5 初始化
         QbSdk.initX5Environment(application, cb)
+    }
+
+    private fun shouldInit(): Boolean {
+        val am = application.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val processInfos = am.runningAppProcesses
+        val mainProcessName = application.applicationInfo.processName
+        val myPid = android.os.Process.myPid()
+        for (info in processInfos) {
+            if (info.pid == myPid && mainProcessName == info.processName) {
+                return true
+            }
+        }
+        return false
     }
 }
