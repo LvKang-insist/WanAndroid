@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.SparseArray
 import android.view.*
 import android.widget.ImageView
@@ -58,6 +59,8 @@ open class BaseFragDialog internal constructor(
     private var mClickArray: SparseArray<OnListener>?
     private var mSetText: SparseArray<String>?
     private val mSetImage: SparseArray<String>
+
+    private var handler: Handler? = Handler(Looper.getMainLooper())
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -162,8 +165,8 @@ open class BaseFragDialog internal constructor(
     /**
      * 延时发送，在指定的时间执行
      */
-    fun postAtTime(uptimeMillis: Long, run: Runnable?) {
-        HANDLER?.postDelayed(run, uptimeMillis)
+    fun postAtTime(uptimeMillis: Long, run: Runnable) {
+        handler?.postDelayed(run, uptimeMillis)
     }
 
     /**
@@ -219,15 +222,14 @@ open class BaseFragDialog internal constructor(
         if (mActivity != null) {
             mActivity = null
         }
-        if (HANDLER != null) {
-            HANDLER?.removeCallbacksAndMessages(null)
-            HANDLER = null
+        if (handler != null) {
+            handler?.removeCallbacksAndMessages(null)
+            handler = null
         }
-        requireFragmentManager()
     }
 
     companion object {
-        var HANDLER: Handler? = Handler()
+
         fun newInstance(
             view: Any?, alpha: Float,
             mAutoDismiss: Boolean, cancelable: Boolean,
