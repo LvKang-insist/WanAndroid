@@ -24,6 +24,7 @@ interface IContract {
      *  P 层接口
      */
     interface IBasePresenter<V : IBaseView> : LifecycleObserver {
+
         fun attachView(view: V, savedInstanceState: Bundle?)
 
         fun getView(): V?
