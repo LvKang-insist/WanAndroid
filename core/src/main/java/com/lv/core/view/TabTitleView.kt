@@ -1,6 +1,7 @@
 package com.lv.core.view
 
 import android.content.Context
+import android.graphics.Color
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView
 
 class TabTitleView(context: Context) : ColorTransitionPagerTitleView(context) {
