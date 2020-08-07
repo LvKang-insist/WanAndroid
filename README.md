@@ -10,7 +10,7 @@ Android 资料的一个软件，基于鸿洋大佬的API，项目基于 Kotlin +
 
 ### 首页：
 
-![1](README.assets/1.png)
+![](README.assets/1.png)
 
 项目：
 
