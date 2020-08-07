@@ -10,11 +10,11 @@ Android 资料的一个软件，基于鸿洋大佬的API，项目基于 Kotlin +
 
 ### 首页：
 
-![Screenshot_2020-08-07-10-45-01-684_com.lv.wanandr](D:%5C345%5CProject%5CWanAndroid%5Creader.assets%5CScreenshot_2020-08-07-10-45-01-684_com.lv.wanandr.jpg)
+![1](README.assets/1.png)
 
 项目：
 
-![Screenshot_2020-08-07-10-45-16-782_com.lv.wanandr](D:%5C345%5CProject%5CWanAndroid%5Creader.assets%5CScreenshot_2020-08-07-10-45-16-782_com.lv.wanandr-1596768939114.jpg)
+![2](README.assets/2.png)
 
 
 
@@ -22,25 +22,27 @@ Android 资料的一个软件，基于鸿洋大佬的API，项目基于 Kotlin +
 
 使用了 RecyclerView + ViewPager2
 
-![Screenshot_2020-08-07-10-45-25-296_com.lv.wanandr](D:%5C345%5CProject%5CWanAndroid%5Creader.assets%5CScreenshot_2020-08-07-10-45-25-296_com.lv.wanandr.jpg)
+![3](README.assets/3.png)
 
 ### 4，干货
 
-![Screenshot_2020-08-07-10-45-46-486_com.lv.wanandr](D:%5C345%5CProject%5CWanAndroid%5Creader.assets%5CScreenshot_2020-08-07-10-45-46-486_com.lv.wanandr.jpg)
+![4](README.assets/4.png)
 
 ### 5：搜索：
 
-![Screenshot_2020-08-07-10-45-51-445_com.lv.wanandr](D:%5C345%5CProject%5CWanAndroid%5Creader.assets%5CScreenshot_2020-08-07-10-45-51-445_com.lv.wanandr.jpg)
+![5](README.assets/5.png)
 
 ### 6，侧滑栏
 
-![Screenshot_2020-08-07-10-45-56-309_com.lv.wanandr](D:%5C345%5CProject%5CWanAndroid%5Creader.assets%5CScreenshot_2020-08-07-10-45-56-309_com.lv.wanandr.jpg)
+![6](README.assets/6.png)
 
 ### 7，详情
 
-![Screenshot_2020-08-07-10-46-17-667_com.lv.wanandr](D:%5C345%5CProject%5CWanAndroid%5Creader.assets%5CScreenshot_2020-08-07-10-46-17-667_com.lv.wanandr.jpg)
+![7](README.assets/7.png)
 
+8，登陆
 
+![8](README.assets/8.png)
 
 ### 使用的第三方库：
 
