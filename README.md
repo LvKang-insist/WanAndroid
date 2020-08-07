@@ -10,13 +10,11 @@ Android 资料的一个软件，基于鸿洋大佬的API，项目基于 Kotlin +
 
 ### 首页：
 
-![](README.assets/1.png)
+![1](https://github.com/LvKang-insist/WanAndroid/blob/master/README.assets/1.png)
 
-项目：
+### 项目：
 
 ![2](README.assets/2.png)
-
-
 
 ### 3：体系
 
